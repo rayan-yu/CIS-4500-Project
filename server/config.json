@@ -1,0 +1,9 @@
+{
+  "rds_host": "cis450.cxajlg6cd4mp.us-east-1.rds.amazonaws.com",
+  "rds_port": "3306",
+  "rds_user": "admin",
+  "rds_password": "cis450group!",
+  "rds_db": "",
+  "server_host": "localhost",
+  "server_port": "3000"
+}
