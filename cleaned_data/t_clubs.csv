@@ -1,0 +1,148 @@
+club_id,club_code,name,domestic_competition_id,squad_size,average_age,foreigners_number,foreigners_percentage,national_team_players,stadium_name,stadium_seats,net_transfer_record,last_season,url,transfer_euros
+2239,us-cremonese,444,IT1,26,26.0,12,46.2,7,Giovanni Zini,16003,€-33.80m,2022,https://www.transfermarkt.co.uk/us-cremonese/startseite/verein/2239,-33800000.0
+2423,cd-santa-clara,88,PO1,31,25.8,20,64.5,2,Estádio de São Miguel,15000,+€5.85m,2022,https://www.transfermarkt.co.uk/cd-santa-clara/startseite/verein/2423,5850000.0
+383,psv-eindhoven,316,NL1,24,25.5,14,58.3,8,Philips Stadion,35000,+€83.75m,2022,https://www.transfermarkt.co.uk/psv-eindhoven/startseite/verein/383,83750000.0
+60,sc-freiburg,370,L1,26,26.2,10,38.5,10,Europa-Park Stadion,34700,+€5.43m,2022,https://www.transfermarkt.co.uk/sc-freiburg/startseite/verein/60,5430000.0
+6574,us-sassuolo,448,IT1,26,25.8,15,57.7,8,Mapei Stadium - Città del Tricolore,21584,+€21.56m,2022,https://www.transfermarkt.co.uk/us-sassuolo/startseite/verein/6574,21560000.0
+667,rc-strassburg-alsace,332,FR1,26,26.6,11,42.3,8,Stade de la Meinau,29000,+€3.90m,2022,https://www.transfermarkt.co.uk/rc-strassburg-alsace/startseite/verein/667,3900000.0
+200,fc-utrecht,191,NL1,30,25.6,13,43.3,4,"Stadion ""Galgenwaard""",23750,+€8.80m,2022,https://www.transfermarkt.co.uk/fc-utrecht/startseite/verein/200,8800000.0
+2503,boavista-porto-fc,68,PO1,28,25.6,16,57.1,8,Estádio do Bessa Sec. XXI,28263,+€12.25m,2022,https://www.transfermarkt.co.uk/boavista-porto-fc/startseite/verein/2503,12250000.0
+2687,fc-cadiz,122,ES1,29,29.0,9,31.0,4,Nuevo Mirandilla,21094,€-8.50m,2022,https://www.transfermarkt.co.uk/fc-cadiz/startseite/verein/2687,-8500000.0
+46,inter-mailand,241,IT1,27,28.4,16,59.3,17,Giuseppe Meazza,75923,€-34.55m,2022,https://www.transfermarkt.co.uk/inter-mailand/startseite/verein/46,-34550000.0
+49702,fk-nizhny-novgorod,178,RU1,26,25.7,5,19.2,1,Nizhny Novgorod Stadium,44242,+€230k,2022,https://www.transfermarkt.co.uk/fk-nizhny-novgorod/startseite/verein/49702,230000.0
+631,fc-chelsea,110,GB1,32,25.4,21,65.6,23,Stamford Bridge,40853,€-543.66m,2022,https://www.transfermarkt.co.uk/fc-chelsea/startseite/verein/631,-543660000.0
+86,sv-werder-bremen,389,L1,26,25.3,9,34.6,6,Wohninvest-Weserstadion,42100,€-2.15m,2022,https://www.transfermarkt.co.uk/sv-werder-bremen/startseite/verein/86,-2150000.0
+1082,losc-lille,264,FR1,23,26.0,15,65.2,8,Decathlon Arena-Stade Pierre-Mauroy,50186,+€75.50m,2022,https://www.transfermarkt.co.uk/losc-lille/startseite/verein/1082,75500000.0
+16704,fk-krasnodar,197,RU1,23,24.7,12,52.2,5,Stadion Krasnodar,35179,+€1.66m,2022,https://www.transfermarkt.co.uk/fk-krasnodar/startseite/verein/16704,1660000.0
+180,fc-southampton,403,GB1,30,25.5,21,70.0,15,St Mary's Stadium,32384,€-138.15m,2022,https://www.transfermarkt.co.uk/fc-southampton/startseite/verein/180,-138150000.0
+317,fc-twente-enschede,437,NL1,24,25.3,10,41.7,4,De Grolsch Veste,30205,€-500k,2022,https://www.transfermarkt.co.uk/fc-twente-enschede/startseite/verein/317,-500000.0
+6912,fc-vizela,192,PO1,26,24.9,19,73.1,4,Estádio do Vizela,6565,+€900k,2022,https://www.transfermarkt.co.uk/fc-vizela/startseite/verein/6912,900000.0
+703,nottingham-forest,300,GB1,35,28.1,23,65.7,19,The City Ground,30445,€-185.75m,2022,https://www.transfermarkt.co.uk/nottingham-forest/startseite/verein/703,-185750000.0
+1041,olympique-lyon,308,FR1,23,25.2,10,43.5,2,Groupama Stadium,59186,+€46.40m,2022,https://www.transfermarkt.co.uk/olympique-lyon/startseite/verein/1041,46400000.0
+131,fc-barcelona,151,ES1,22,25.5,9,40.9,17,Spotify Camp Nou,99354,€-118.50m,2022,https://www.transfermarkt.co.uk/fc-barcelona/startseite/verein/131,-118500000.0
+33,fc-schalke-04,183,L1,32,27.3,18,56.3,6,Veltins-Arena,62271,+€11.12m,2022,https://www.transfermarkt.co.uk/fc-schalke-04/startseite/verein/33,11120000.0
+336,sporting-lissabon,412,PO1,33,24.4,16,48.5,7,Estádio José Alvalade XXI,50080,+€71.53m,2022,https://www.transfermarkt.co.uk/sporting-lissabon/startseite/verein/336,71530000.0
+762,newcastle-united,298,GB1,29,27.4,17,58.6,11,St James' Park,52338,€-176.55m,2022,https://www.transfermarkt.co.uk/newcastle-united/startseite/verein/762,-176550000.0
+873,crystal-palace,121,GB1,25,27.0,15,60.0,5,Selhurst Park,26047,€-41.15m,2022,https://www.transfermarkt.co.uk/crystal-palace/startseite/verein/873,-41150000.0
+989,afc-bournemouth,15,GB1,27,26.5,16,59.3,13,Vitality Stadium,11329,€-83.10m,2022,https://www.transfermarkt.co.uk/afc-bournemouth/startseite/verein/989,-83100000.0
+1005,us-lecce,445,IT1,31,24.5,19,61.3,7,Ettore Giardiniero,31559,€-3.73m,2022,https://www.transfermarkt.co.uk/us-lecce/startseite/verein/1005,-3730000.0
+1025,fc-bologna,69,IT1,31,25.5,21,67.7,10,Stadio Renato Dall’Ara,36462,+€9.28m,2022,https://www.transfermarkt.co.uk/fc-bologna/startseite/verein/1025,9280000.0
+1083,fk-rostov,200,RU1,24,24.7,3,12.5,8,Rostov Arena,45415,€-3.85m,2022,https://www.transfermarkt.co.uk/fk-rostov/startseite/verein/1083,-3850000.0
+11127,ural-ekaterinburg,452,RU1,28,27.2,10,35.7,2,Yekaterinburg Arena,23000,€-1.42m,2022,https://www.transfermarkt.co.uk/ural-ekaterinburg/startseite/verein/11127,-1420000.0
+1465,gd-estoril-praia,215,PO1,29,24.4,14,48.3,2,Estádio António Coimbra da Mota,8000,+€6.74m,2022,https://www.transfermarkt.co.uk/gd-estoril-praia/startseite/verein/1465,6740000.0
+18,borussia-monchengladbach,72,L1,27,25.9,15,55.6,10,Stadion im Borussia-Park,54042,€-2.00m,2022,https://www.transfermarkt.co.uk/borussia-monchengladbach/startseite/verein/18,-2000000.0
+235,rkc-waalwijk,336,NL1,28,26.0,16,57.1,5,Mandemakers Stadion,7508,+€3.00m,2022,https://www.transfermarkt.co.uk/rkc-waalwijk/startseite/verein/235,3000000.0
+23826,rasenballsport-leipzig,329,L1,27,25.6,17,63.0,18,Red Bull Arena,47069,+€16.32m,2022,https://www.transfermarkt.co.uk/rasenballsport-leipzig/startseite/verein/23826,16320000.0
+27,fc-bayern-munchen,61,L1,27,26.4,16,59.3,21,Allianz Arena,75024,€-41.40m,2022,https://www.transfermarkt.co.uk/fc-bayern-munchen/startseite/verein/27,-41400000.0
+273,fc-stade-rennes,419,FR1,28,24.5,14,50.0,11,Roazhon Park,29778,+€14.50m,2022,https://www.transfermarkt.co.uk/fc-stade-rennes/startseite/verein/273,14500000.0
+3524,clermont-foot-63,114,FR1,25,25.8,15,60.0,7,Stade Gabriel-Montpied,13000,+€19.10m,2022,https://www.transfermarkt.co.uk/clermont-foot-63/startseite/verein/3524,19100000.0
+39,1-fsv-mainz-05,204,L1,27,25.1,13,48.1,9,Mewa Arena,33305,+€450k,2022,https://www.transfermarkt.co.uk/1-fsv-mainz-05/startseite/verein/39,450000.0
+416,fc-turin,430,IT1,28,24.6,23,82.1,17,Stadio Olimpico Grande Torino,28177,+€22.12m,2022,https://www.transfermarkt.co.uk/fc-turin/startseite/verein/416,22120000.0
+80,vfl-bochum,461,L1,28,28.1,17,60.7,7,Vonovia Ruhrstadion,26000,+€14.27m,2022,https://www.transfermarkt.co.uk/vfl-bochum/startseite/verein/80,14270000.0
+969,montpellier-hsc,290,FR1,28,25.7,12,42.9,5,Stade de la Mosson,32939,+€500k,2022,https://www.transfermarkt.co.uk/montpellier-hsc/startseite/verein/969,500000.0
+1050,fc-villarreal,465,ES1,23,28.3,9,39.1,8,La Cerámica,23500,+€25.12m,2022,https://www.transfermarkt.co.uk/fc-villarreal/startseite/verein/1050,25120000.0
+1186,torpedo-moskau,432,RU1,29,27.2,10,34.5,4,Luzhniki Stadium,81000,€-3.21m,2022,https://www.transfermarkt.co.uk/torpedo-moskau/startseite/verein/1186,-3210000.0
+12,as-rom,23,IT1,28,26.1,19,67.9,17,Olimpico di Roma,73261,+€58.49m,2022,https://www.transfermarkt.co.uk/as-rom/startseite/verein/12,58490000.0
+1421,stade-reims,418,FR1,25,24.6,16,64.0,7,Stade Auguste-Delaune,21684,+€8.55m,2022,https://www.transfermarkt.co.uk/stade-reims/startseite/verein/1421,8550000.0
+234,feyenoord-rotterdam,208,NL1,27,23.5,16,59.3,13,"Stadion Feyenoord ""De Kuip""",47500,+€35.13m,2022,https://www.transfermarkt.co.uk/feyenoord-rotterdam/startseite/verein/234,35130000.0
+24,eintracht-frankfurt,142,L1,30,25.2,18,60.0,11,Deutsche Bank Park,51500,€-9.40m,2022,https://www.transfermarkt.co.uk/eintracht-frankfurt/startseite/verein/24,-9400000.0
+398,lazio-rom,385,IT1,26,27.2,16,61.5,9,Olimpico di Roma,73261,+€2.45m,2022,https://www.transfermarkt.co.uk/lazio-rom/startseite/verein/398,2450000.0
+543,wolverhampton-wanderers,477,GB1,28,26.2,24,85.7,14,Molineux Stadium,32050,€-114.24m,2022,https://www.transfermarkt.co.uk/wolverhampton-wanderers/startseite/verein/543,-114240000.0
+7378,portimonense-sc,325,PO1,32,25.1,23,71.9,3,Portimonense Estádio,6000,+€12.10m,2022,https://www.transfermarkt.co.uk/portimonense-sc/startseite/verein/7378,12100000.0
+1148,fc-brentford,74,GB1,25,25.6,19,76.0,15,Brentford Community Stadium,17250,€-47.90m,2022,https://www.transfermarkt.co.uk/fc-brentford/startseite/verein/1148,-47900000.0
+1158,fc-lorient,169,FR1,26,24.6,12,46.2,7,Stade du Moustoir,19010,+€9.25m,2022,https://www.transfermarkt.co.uk/fc-lorient/startseite/verein/1158,9250000.0
+1237,brighton-amp-hove-albion,76,GB1,25,24.8,18,72.0,13,AMEX Stadium,31800,+€82.17m,2022,https://www.transfermarkt.co.uk/brighton-amp-hove-albion/startseite/verein/1237,82170000.0
+148,tottenham-hotspur,434,GB1,25,26.7,17,68.0,16,Tottenham Hotspur Stadium,62062,€-139.15m,2022,https://www.transfermarkt.co.uk/tottenham-hotspur/startseite/verein/148,-139150000.0
+3,1-fc-koln,168,L1,34,24.6,11,32.4,7,RheinEnergieSTADION,50000,+€5.52m,2022,https://www.transfermarkt.co.uk/1-fc-koln/startseite/verein/3,5520000.0
+31,fc-liverpool,272,GB1,30,26.6,21,70.0,17,Anfield,54074,€-56.60m,2022,https://www.transfermarkt.co.uk/fc-liverpool/startseite/verein/31,-56600000.0
+379,west-ham-united,473,GB1,22,28.2,16,72.7,13,London Stadium,62500,€-172.45m,2022,https://www.transfermarkt.co.uk/west-ham-united/startseite/verein/379,-172450000.0
+385,fortuna-sittard,211,NL1,26,25.8,18,69.2,2,Fortuna Sittard Stadion,12500,+€400k,2022,https://www.transfermarkt.co.uk/fortuna-sittard/startseite/verein/385,400000.0
+3911,stade-brest-29,417,FR1,26,25.5,9,34.6,4,Stade Francis-Le Blé,15097,€-3.25m,2022,https://www.transfermarkt.co.uk/stade-brest-29/startseite/verein/3911,-3250000.0
+405,aston-villa,50,GB1,23,27.2,16,69.6,13,Villa Park,42682,€-46.14m,2022,https://www.transfermarkt.co.uk/aston-villa/startseite/verein/405,-46140000.0
+417,ogc-nizza,304,FR1,27,24.3,18,66.7,13,Allianz Riviera,36178,€-39.60m,2022,https://www.transfermarkt.co.uk/ogc-nizza/startseite/verein/417,-39600000.0
+418,real-madrid,345,ES1,25,27.4,17,68.0,16,Santiago Bernabéu,81044,+€12.15m,2022,https://www.transfermarkt.co.uk/real-madrid/startseite/verein/418,12150000.0
+467,nec-nijmegen,296,NL1,27,24.2,9,33.3,1,Goffertstadion,12500,€-1.00m,2022,https://www.transfermarkt.co.uk/nec-nijmegen/startseite/verein/467,-1000000.0
+6195,ssc-neapel,386,IT1,27,26.1,19,70.4,20,Stadio Diego Armando Maradona,54726,+€4.40m,2022,https://www.transfermarkt.co.uk/ssc-neapel/startseite/verein/6195,4400000.0
+720,fc-porto,181,PO1,28,26.6,15,53.6,9,Estádio do Dragão,50399,+€35.74m,2022,https://www.transfermarkt.co.uk/fc-porto/startseite/verein/720,35740000.0
+931,fc-fulham,213,GB1,24,28.1,22,91.7,14,Craven Cottage,22384,€-49.30m,2022,https://www.transfermarkt.co.uk/fc-fulham/startseite/verein/931,-49300000.0
+1090,az-alkmaar,25,NL1,28,23.1,11,39.3,8,AFAS Stadion,19478,+€8.21m,2022,https://www.transfermarkt.co.uk/az-alkmaar/startseite/verein/1090,8210000.000000001
+162,as-monaco,21,FR1,27,24.3,27,100.0,9,Stade Louis-II,18523,+€112.70m,2022,https://www.transfermarkt.co.uk/as-monaco/startseite/verein/162,112700000.0
+2424,gil-vicente-fc,221,PO1,25,25.6,17,68.0,4,Estádio Cidade de Barcelos,12046,+€5.35m,2022,https://www.transfermarkt.co.uk/gil-vicente-fc/startseite/verein/2424,5350000.0
+3329,fc-famalicao,159,PO1,30,24.3,19,63.3,4,Estádio Municipal de Famalicão,5300,+€2.20m,2022,https://www.transfermarkt.co.uk/fc-famalicao/startseite/verein/3329,2200000.0
+41231,fk-sochi,185,RU1,25,27.9,7,28.0,3,Fisht Olympic Stadium,45994,+€5.97m,2022,https://www.transfermarkt.co.uk/fk-sochi/startseite/verein/41231,5970000.0
+8024,fc-arouca,149,PO1,27,25.9,21,77.8,2,Estádio Municipal de Arouca,5600,+€4.00m,2022,https://www.transfermarkt.co.uk/fc-arouca/startseite/verein/8024,4000000.0
+1049,fc-valencia,455,ES1,26,25.0,14,53.8,9,Mestalla,48600,+€42.10m,2022,https://www.transfermarkt.co.uk/fc-valencia/startseite/verein/1049,42100000.0
+1283,fc-emmen,156,NL1,30,25.7,14,46.7,3,De Oude Meerdijk,8309,+-0,2022,https://www.transfermarkt.co.uk/fc-emmen/startseite/verein/1283,0.0
+2425,rio-ave-fc,353,PO1,24,27.3,12,50.0,0,Estádio dos Arcos,9065,+€600k,2022,https://www.transfermarkt.co.uk/rio-ave-fc/startseite/verein/2425,600000.0
+3719,fk-khimki,196,RU1,27,25.3,12,44.4,2,Arena Khimki,18636,€-892k,2022,https://www.transfermarkt.co.uk/fk-khimki/startseite/verein/3719,-892000.0
+610,ajax-amsterdam,31,NL1,26,24.2,11,42.3,15,Johan Cruijff ArenA,55600,+€103.52m,2022,https://www.transfermarkt.co.uk/ajax-amsterdam/startseite/verein/610,103520000.0
+826,rc-lens,331,FR1,30,25.7,18,60.0,13,Stade Bollaert-Delelis,38223,+€13.24m,2022,https://www.transfermarkt.co.uk/rc-lens/startseite/verein/826,13240000.0
+985,manchester-united,283,GB1,32,26.0,20,62.5,18,Old Trafford,74879,€-230.03m,2022,https://www.transfermarkt.co.uk/manchester-united/startseite/verein/985,-230030000.0
+13,atletico-madrid,54,ES1,22,28.5,15,68.2,17,Civitas Metropolitano,68456,€-9.25m,2022,https://www.transfermarkt.co.uk/atletico-madrid/startseite/verein/13,-9250000.0
+1435,go-ahead-eagles-deventer,226,NL1,27,23.4,11,40.7,0,De Adelaarshorst,9909,+€750k,2022,https://www.transfermarkt.co.uk/go-ahead-eagles-deventer/startseite/verein/1435,750000.0
+14589,fk-orenburg,199,RU1,25,25.8,13,52.0,4,Gazovik,10046,€-5.58m,2022,https://www.transfermarkt.co.uk/fk-orenburg/startseite/verein/14589,-5580000.0
+16,borussia-dortmund,71,L1,33,24.6,16,48.5,16,SIGNAL IDUNA PARK,81365,€-25.10m,2022,https://www.transfermarkt.co.uk/borussia-dortmund/startseite/verein/16,-25100000.0
+232,spartak-moskau,409,RU1,26,25.1,8,30.8,11,Otkrytie Bank Arena,44571,+€894k,2022,https://www.transfermarkt.co.uk/spartak-moskau/startseite/verein/232,894000.0
+276,hellas-verona,233,IT1,29,26.3,18,62.1,6,Marcantonio Bentegodi,39211,€-5.68m,2022,https://www.transfermarkt.co.uk/hellas-verona/startseite/verein/276,-5680000.0
+281,manchester-city,282,GB1,24,26.8,16,66.7,17,Etihad Stadium,55017,+€11.67m,2022,https://www.transfermarkt.co.uk/manchester-city/startseite/verein/281,11670000.0
+3302,ud-almeria,439,ES1,26,26.2,13,50.0,3,Power Horse Stadium,15274,€-14.88m,2022,https://www.transfermarkt.co.uk/ud-almeria/startseite/verein/3302,-14880000.0
+368,fc-sevilla,393,ES1,24,28.8,18,75.0,9,Ramón Sánchez-Pizjuán,43883,+€62.10m,2022,https://www.transfermarkt.co.uk/fc-sevilla/startseite/verein/368,62100000.0
+430,ac-florenz,12,IT1,26,26.5,14,53.8,9,Artemio Franchi,43147,+€11.10m,2022,https://www.transfermarkt.co.uk/ac-florenz/startseite/verein/430,11100000.0
+506,juventus-turin,245,IT1,28,27.0,17,60.7,17,Allianz Stadium,41507,+€5.03m,2022,https://www.transfermarkt.co.uk/juventus-turin/startseite/verein/506,5030000.0
+1147,ac-ajaccio,0,FR1,30,28.4,15,50.0,9,Stade François-Coty,10446,+€300k,2022,https://www.transfermarkt.co.uk/ac-ajaccio/startseite/verein/1147,300000.0
+1301,cs-maritimo,96,PO1,29,26.5,18,62.1,4,Estádio do Marítimo,10932,€-750k,2022,https://www.transfermarkt.co.uk/cs-maritimo/startseite/verein/1301,-750000.0
+133,sc-cambuur-leeuwarden,366,NL1,30,25.7,12,40.0,5,Cambuurstadion,10250,€-550k,2022,https://www.transfermarkt.co.uk/sc-cambuur-leeuwarden/startseite/verein/133,-550000.0
+237,rcd-mallorca,334,ES1,24,27.9,13,54.2,9,Mallorca Son Moix,20500,€-8.32m,2022,https://www.transfermarkt.co.uk/rcd-mallorca/startseite/verein/237,-8320000.0
+2410,zska-moskau,98,RU1,26,25.1,8,30.8,7,VEB Arena,30114,€-4.72m,2022,https://www.transfermarkt.co.uk/zska-moskau/startseite/verein/2410,-4720000.0
+244,olympique-marseille,309,FR1,22,26.6,16,72.7,13,Orange Vélodrome,67394,€-77.93m,2022,https://www.transfermarkt.co.uk/olympique-marseille/startseite/verein/244,-77930000.0
+2995,fc-pacos-de-ferreira,179,PO1,28,25.6,12,42.9,2,Estádio Capital do Móvel,9200,+€4.96m,2022,https://www.transfermarkt.co.uk/fc-pacos-de-ferreira/startseite/verein/2995,4960000.0
+366,real-valladolid,349,ES1,24,28.0,10,41.7,6,Nuevo José Zorrilla,27618,€-5.00m,2022,https://www.transfermarkt.co.uk/real-valladolid/startseite/verein/366,-5000000.0
+533,tsg-1899-hoffenheim,425,L1,31,25.8,17,54.8,9,PreZero Arena,30150,+€40.40m,2022,https://www.transfermarkt.co.uk/tsg-1899-hoffenheim/startseite/verein/533,40400000.0
+89,1-fc-union-berlin,190,L1,27,27.6,13,48.1,9,Stadion An der Alten Försterei,22012,+€6.02m,2022,https://www.transfermarkt.co.uk/1-fc-union-berlin/startseite/verein/89,6020000.0
+995,fc-nantes,175,FR1,27,26.2,12,44.4,8,Stade de la Beaujoire,37463,€-12.45m,2022,https://www.transfermarkt.co.uk/fc-nantes/startseite/verein/995,-12450000.0
+1003,leicester-city,268,GB1,27,27.0,19,70.4,17,King Power Stadium,32273,+€33.40m,2022,https://www.transfermarkt.co.uk/leicester-city/startseite/verein/1003,33400000.0
+11,fc-arsenal,45,GB1,23,25.2,16,69.6,17,Emirates Stadium,60704,€-168.56m,2022,https://www.transfermarkt.co.uk/fc-arsenal/startseite/verein/11,-168560000.0
+1420,sco-angers,40,FR1,31,25.0,15,48.4,6,Stade Raymond Kopa,19350,+€31.00m,2022,https://www.transfermarkt.co.uk/sco-angers/startseite/verein/1420,31000000.0
+150,real-betis-sevilla,344,ES1,26,29.0,13,50.0,10,Benito Villamarín,59378,€-10.25m,2022,https://www.transfermarkt.co.uk/real-betis-sevilla/startseite/verein/150,-10250000.0
+167,fc-augsburg,150,L1,32,25.3,19,59.4,6,WWK ARENA,30660,€-4.65m,2022,https://www.transfermarkt.co.uk/fc-augsburg/startseite/verein/167,-4650000.0
+2696,krylya-sovetov-samara,260,RU1,25,25.0,6,24.0,4,Solidarnost Samara Arena,42347,+€2.53m,2022,https://www.transfermarkt.co.uk/krylya-sovetov-samara/startseite/verein/2696,2530000.0
+306,sc-heerenveen,371,NL1,26,24.6,12,46.2,2,Abe Lenstra Stadion,27224,+€4.95m,2022,https://www.transfermarkt.co.uk/sc-heerenveen/startseite/verein/306,4950000.0
+3725,akhmat-grozny,32,RU1,30,26.0,10,33.3,2,Akhmat-Arena,30200,€-4.40m,2022,https://www.transfermarkt.co.uk/akhmat-grozny/startseite/verein/3725,-4400000.0
+44,hertha-bsc,235,L1,29,26.1,16,55.2,8,Olympiastadion Berlin,74667,+€16.20m,2022,https://www.transfermarkt.co.uk/hertha-bsc/startseite/verein/44,16200000.0
+499,vitesse-arnheim,466,NL1,28,23.7,13,46.4,4,GelreDome,21248,€-1.20m,2022,https://www.transfermarkt.co.uk/vitesse-arnheim/startseite/verein/499,-1200000.0
+5,ac-mailand,5,IT1,30,27.0,24,80.0,19,Giuseppe Meazza,75923,€-37.42m,2022,https://www.transfermarkt.co.uk/ac-mailand/startseite/verein/5,-37420000.0
+621,athletic-bilbao,52,ES1,25,27.8,1,4.0,4,San Mamés,53289,+-0,2022,https://www.transfermarkt.co.uk/athletic-bilbao/startseite/verein/621,0.0
+681,real-sociedad-san-sebastian,348,ES1,26,25.7,5,19.2,6,Reale Arena,39313,+€27.50m,2022,https://www.transfermarkt.co.uk/real-sociedad-san-sebastian/startseite/verein/681,27500000.0
+714,espanyol-barcelona,333,ES1,27,26.0,7,25.9,5,RCDE Stadium,40500,€-5.80m,2022,https://www.transfermarkt.co.uk/espanyol-barcelona/startseite/verein/714,-5800000.0
+724,fc-volendam,193,NL1,32,22.6,13,40.6,0,Kras Stadion,7384,+-0,2022,https://www.transfermarkt.co.uk/fc-volendam/startseite/verein/724,0.0
+800,atalanta-bergamo,51,IT1,25,26.6,17,68.0,13,Gewiss Stadium,21747,+€6.35m,2022,https://www.transfermarkt.co.uk/atalanta-bergamo/startseite/verein/800,6350000.0
+932,lokomotiv-moskau,274,RU1,29,24.1,7,24.1,9,RZD Arena,27084,€-4.80m,2022,https://www.transfermarkt.co.uk/lokomotiv-moskau/startseite/verein/932,-4800000.0
+29,fc-everton,146,GB1,25,27.4,11,44.0,8,Goodison Park,39571,+€25.40m,2022,https://www.transfermarkt.co.uk/fc-everton/startseite/verein/29,25400000.0
+290,aj-auxerre,16,FR1,33,25.7,21,63.6,10,Stade de l'Abbé-Deschamps,18541,€-1.25m,2022,https://www.transfermarkt.co.uk/aj-auxerre/startseite/verein/290,-1250000.0
+1095,es-troyes-ac,140,FR1,27,25.4,13,48.1,4,Stade de l'Aube,21877,€-14.80m,2022,https://www.transfermarkt.co.uk/es-troyes-ac/startseite/verein/1095,-14800000.0
+2420,vitoria-guimaraes-sc,467,PO1,29,24.1,12,41.4,4,Estádio D. Afonso Henriques,29865,+€13.49m,2022,https://www.transfermarkt.co.uk/vitoria-guimaraes-sc/startseite/verein/2420,13490000.0
+294,benfica-lissabon,382,PO1,24,25.0,14,58.3,10,Estádio da Luz,65000,+€148.17m,2022,https://www.transfermarkt.co.uk/benfica-lissabon/startseite/verein/294,148170000.0
+331,ca-osasuna,82,ES1,22,27.8,4,18.2,3,El Sadar,23576,€-2.00m,2022,https://www.transfermarkt.co.uk/ca-osasuna/startseite/verein/331,-2000000.0
+3522,spezia-calcio,411,IT1,29,25.8,22,75.9,10,Alberto Picco,11676,+€23.32m,2022,https://www.transfermarkt.co.uk/spezia-calcio/startseite/verein/3522,23320000.0
+399,leeds-united,267,GB1,24,25.6,19,79.2,8,Elland Road,37890,€-31.09m,2022,https://www.transfermarkt.co.uk/leeds-united/startseite/verein/399,-31090000.0
+410,udinese-calcio,449,IT1,27,25.4,22,81.5,9,Dacia Arena,25144,+€9.30m,2022,https://www.transfermarkt.co.uk/udinese-calcio/startseite/verein/410,9300000.0
+583,fc-paris-saint-germain,319,FR1,26,25.3,16,61.5,13,Parc des Princes,49691,€-88.20m,2022,https://www.transfermarkt.co.uk/fc-paris-saint-germain/startseite/verein/583,-88200000.0
+798,sbv-excelsior-rotterdam,147,NL1,28,23.6,10,35.7,1,Van Donge & De Roo Stadion - Woudestein,4400,+€2.63m,2022,https://www.transfermarkt.co.uk/sbv-excelsior-rotterdam/startseite/verein/798,2630000.0
+1038,sampdoria-genua,438,IT1,29,26.5,17,58.6,6,Luigi Ferraris,36348,+€28.60m,2022,https://www.transfermarkt.co.uk/sampdoria-genua/startseite/verein/1038,28600000.0
+1075,sc-braga,365,PO1,25,25.9,14,56.0,3,Estádio Municipal de Braga,30286,+€48.73m,2022,https://www.transfermarkt.co.uk/sc-braga/startseite/verein/1075,48730000.0
+12321,fc-girona,225,ES1,25,26.6,11,44.0,4,Montilivi,13286,€-15.00m,2022,https://www.transfermarkt.co.uk/fc-girona/startseite/verein/12321,-15000000.0
+15,bayer-04-leverkusen,59,L1,27,24.9,19,70.4,13,BayArena,30210,€-5.60m,2022,https://www.transfermarkt.co.uk/bayer-04-leverkusen/startseite/verein/15,-5600000.0
+1531,fc-elche,143,ES1,26,27.7,10,38.5,2,Manuel Martínez Valero,31388,€-7.66m,2022,https://www.transfermarkt.co.uk/fc-elche/startseite/verein/1531,-7660000.0
+202,fc-groningen,161,NL1,29,22.8,14,48.3,5,Euroborg,22555,+€15.97m,2022,https://www.transfermarkt.co.uk/fc-groningen/startseite/verein/202,15970000.0
+3325,gd-chaves,214,PO1,27,26.3,17,63.0,3,Estádio Municipal Eng.º Manuel Branco Teixeira,9000,+€4.50m,2022,https://www.transfermarkt.co.uk/gd-chaves/startseite/verein/3325,4500000.0
+415,fc-toulouse,189,FR1,26,24.3,23,88.5,6,Stadium Municipal,33150,€-3.00m,2022,https://www.transfermarkt.co.uk/fc-toulouse/startseite/verein/415,-3000000.0
+79,vfb-stuttgart,460,L1,29,23.7,16,55.2,8,Mercedes-Benz Arena,60449,+€37.81m,2022,https://www.transfermarkt.co.uk/vfb-stuttgart/startseite/verein/79,37810000.0
+964,zenit-st-petersburg,481,RU1,23,26.5,10,43.5,9,Gazprom Arena,63026,€-7.17m,2022,https://www.transfermarkt.co.uk/zenit-st-petersburg/startseite/verein/964,-7170000.0
+121,dinamo-moskau,138,RU1,23,25.0,9,39.1,10,VTB-Arena,25716,€-6.38m,2022,https://www.transfermarkt.co.uk/dinamo-moskau/startseite/verein/121,-6380000.0
+367,rayo-vallecano,342,ES1,25,28.7,8,32.0,6,Campo de Fútbol de Vallecas,15105,€-11.10m,2022,https://www.transfermarkt.co.uk/rayo-vallecano/startseite/verein/367,-11100000.0
+3709,fc-getafe,220,ES1,25,27.8,12,48.0,9,Coliseum Alfonso Pérez,16800,+€4.75m,2022,https://www.transfermarkt.co.uk/fc-getafe/startseite/verein/3709,4750000.0
+380,us-salernitana-1919,447,IT1,27,26.8,17,63.0,12,Arechi,29739,€-23.10m,2022,https://www.transfermarkt.co.uk/us-salernitana-1919/startseite/verein/380,-23100000.0
+468,sparta-rotterdam,407,NL1,24,26.1,9,37.5,1,"Sparta-stadion ""Het Kasteel""",11026,+€2.19m,2022,https://www.transfermarkt.co.uk/sparta-rotterdam/startseite/verein/468,2190000.0
+749,fc-empoli,157,IT1,30,25.2,14,46.7,9,Carlo Castellani,19847,+€16.51m,2022,https://www.transfermarkt.co.uk/fc-empoli/startseite/verein/749,16510000.000000002
+82,vfl-wolfsburg,462,L1,25,24.6,15,60.0,10,Volkswagen Arena,30000,€-12.05m,2022,https://www.transfermarkt.co.uk/vfl-wolfsburg/startseite/verein/82,-12050000.0
+940,celta-vigo,106,ES1,23,26.3,10,43.5,6,Abanca Balaídos,29000,€-5.15m,2022,https://www.transfermarkt.co.uk/celta-vigo/startseite/verein/940,-5150000.0
