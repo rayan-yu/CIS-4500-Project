@@ -19,8 +19,8 @@ connection.connect((err) => err && console.log(err));
 // Route 1: GET /author/:type
 const author = async function(req, res) {
   // TODO (TASK 1): replace the values of name and pennKey with your own
-  const name = 'Richard Raup';
-  const pennKey = 'rraup';
+  const name = 'admin';
+  const pennKey = 'adminkey';
 
   // checks the value of type the request parameters
   // note that parameters are required and are specified in server.js in the endpoint by a colon (e.g. /author/:type)
@@ -35,6 +35,118 @@ const author = async function(req, res) {
     res.status(400).send(`'${req.params.type}' is not a valid author type. Valid types are 'name' and 'pennkey'.`);
   }
 }
+
+const player = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Players
+  WHERE player_id = '${req.params.player_id}'  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.json(data[0]);
+    }
+  });
+}
+
+const players = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Players
+  Order By player_name, player_id DESC
+  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.send(data);
+    }
+  });
+}
+const game = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Games
+  WHERE game_id = '${req.params.game_id}'  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.json(data[0]);
+    }
+  });
+}
+const games = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Games
+  Order By home_club_id, competition_id, away_club_id DESC
+  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.send(data);
+    }
+  });
+}
+
+const club = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Clubs
+  WHERE club_id = '${req.params.club_id}'  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.json(data[0]);
+    }
+  });
+}
+const clubs = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Albums
+  Order By club_name, domestic_competition_id DESC
+  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.send(data);
+    }
+  });
+}
+const competition = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Competitions
+  WHERE competition_id = '${req.params.competition_id}'  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.json(data[0]);
+    }
+  });
+}
+const competitions = async function(req, res) {
+  connection.query(`
+  SELECT *
+  FROM Albums
+  Order By competition_name, competition_id DESC
+  `, (err, data) => {
+    if (err || data.length === 0) {
+      console.log(err);
+      res.json({});
+    } else {
+      res.send(data);
+    }
+  });
+}
+
 
 // Route 2: GET /random
 const random = async function(req, res) {
