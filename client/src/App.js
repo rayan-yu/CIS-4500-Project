@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { indigo, amber } from '@mui/material/colors'
+import { indigo, amber, green, orange } from '@mui/material/colors'
 import { createTheme } from "@mui/material/styles";
 
 import NavBar from './components/NavBar';
@@ -8,14 +8,14 @@ import HomePage from './pages/HomePage';
 
 import PlayersPage from './pages/PlayersPage';
 import TeamsPage from './pages/TeamsPage';
-import TeamsInfoPage from './pages/TeamsInfoPage';
+import CompetitionsPage from "./pages/CompetitionsPage";
 
 // createTheme enables you to customize the look and feel of your app past the default
 // in this case, we only change the color scheme
 export const theme = createTheme({
   palette: {
-    primary: indigo,
-    secondary: amber,
+    primary: green,
+    secondary: orange,
   },
 });
 
@@ -33,7 +33,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/Players" element={<PlayersPage />} />
           <Route path="/Teams" element={<TeamsPage />} />
-          <Route path="/Teams/:team_id" element={<TeamsInfoPage />} />
+          <Route path="/Competitions" element={<CompetitionsPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

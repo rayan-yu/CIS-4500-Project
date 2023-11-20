@@ -3,7 +3,7 @@
   "rds_port": "3306",
   "rds_user": "admin",
   "rds_password": "cis450group!",
-  "rds_db": "",
+  "rds_db": "Soccer_DB",
   "server_host": "localhost",
   "server_port": "3000"
 }

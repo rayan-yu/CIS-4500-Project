@@ -1,45 +1,58 @@
 import { useEffect, useState } from 'react';
-import { Box, Container } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
+import PlayerCard from '../components/PlayerCard';
 const config = require('../config.json');
 
-export default function AlbumsPage() {
-  const [albums, setAlbums] = useState([]);
+export default function TeamsPage() {
+  const [pageSize, setPageSize] = useState(10);
+  const [data, setData] = useState([]);
+  const [selectedTeamId, setSelectedTeamId] = useState(null);
+
+  const [name, setName] = useState('');
 
   useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/albums`)
+    fetch(`http://${config.server_host}:${config.server_port}/clubs`)
       .then(res => res.json())
-      .then(resJson => setAlbums(resJson));
+      .then(resJson => {
+        const clubsWithId = resJson.map((club) => ({ id: club.club_id, ...club }));
+        setData(clubsWithId);
+        console.log(clubsWithId);
+      });
   }, []);
 
-  // flexFormat provides the formatting options for a "flexbox" layout that enables the album cards to
-  // be displayed side-by-side and wrap to the next line when the screen is too narrow. Flexboxes are
-  // incredibly powerful. You can learn more on MDN web docs linked below (or many other online resources)
-  // https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
-  const flexFormat = { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly' };
 
+  // This defines the columns of the table of songs used by the DataGrid component.
+  // The format of the columns array and the DataGrid component itself is very similar to our
+  // LazyTable component. The big difference is we provide all data to the DataGrid component
+  // instead of loading only the data we need (which is necessary in order to be able to sort by column)
+  const columns = [
+    { field: 'club_name', headerName: 'Name', width: 300, renderCell: (params) => (
+        <Link onClick={() => setSelectedTeamId(params.row.club_name)}>{params.value}</Link>
+    ) },
+  ]
+
+  // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
+  // The Grid component is super simple way to create a page layout. Simply make a <Grid container> tag
+  // (optionally has spacing prop that specifies the distance between grid items). Then, enclose whatever
+  // component you want in a <Grid item xs={}> tag where xs is a number between 1 and 12. Each row of the
+  // grid is 12 units wide and the xs attribute specifies how many units the grid item is. So if you want
+  // two grid items of the same size on the same row, define two grid items with xs={6}. The Grid container
+  // will automatically lay out all the grid items into rows based on their xs values.
   return (
-    // TODO (TASK 22): replace the empty object {} in the Container's style property with flexFormat. Observe the change to the Albums page.
-    // TODO (TASK 22): then uncomment the code to display the cover image and once again observe the change, i.e. what happens to the layout now that each album card has a fixed width?
-    // This task is just to help you better understand formatting dynamically displayed data. No written explanation of the effects is necessary.
-    <Container style={{flexFormat}}>
-      {albums.map((album) =>
-        <Box
-          key={album.album_id}
-          p={3}
-          m={2}
-          style={{ background: 'white', borderRadius: '16px', border: '2px solid #000' }}
-        >
-          {
-          <img
-            src={album.thumbnail_url}
-            alt={`${album.title} album art`}
-          />
-         }
-          <h4><NavLink to={`/albums/${album.album_id}`}>{album.title}</NavLink></h4>
-        </Box>
-      )}
+    <Container>
+      {selectedTeamId && <PlayerCard playerId={selectedTeamId} handleClose={() => setSelectedTeamId(null)} />}
+      <h2>Teams</h2>
+      {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
+      <DataGrid
+        rows={data}
+        columns={columns}
+        pageSize={pageSize}
+        rowsPerPageOptions={[5, 10, 25]}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        autoHeight
+      />
     </Container>
   );
 }

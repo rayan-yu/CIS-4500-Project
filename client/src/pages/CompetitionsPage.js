@@ -5,20 +5,20 @@ import { DataGrid } from '@mui/x-data-grid';
 import PlayerCard from '../components/PlayerCard';
 const config = require('../config.json');
 
-export default function PlayersPage() {
+export default function CompetitionsPage() {
   const [pageSize, setPageSize] = useState(10);
   const [data, setData] = useState([]);
-  const [selectedPlayerId, setSelectedPlayerId] = useState(null);
+  const [selectedCompetitionId, setSelectedCompetitionId] = useState(null);
 
   const [name, setName] = useState('');
 
   useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/players`)
+    fetch(`http://${config.server_host}:${config.server_port}/competitions`)
       .then(res => res.json())
       .then(resJson => {
-        const playersWithId = resJson.map((player) => ({ id: player.player_id, ...player }));
-        setData(playersWithId);
-        console.log(playersWithId);
+        const CompetitionsWithId = resJson.map((Competition) => ({ id: Competition.competition_id, ...Competition }));
+        setData(CompetitionsWithId);
+        console.log(CompetitionsWithId);
       });
   }, []);
 
@@ -28,8 +28,8 @@ export default function PlayersPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'player_name', headerName: 'Name', width: 300, renderCell: (params) => (
-        <Link onClick={() => setSelectedPlayerId(params.row.name)}>{params.value}</Link>
+    { field: 'competition_name', headerName: 'Name', width: 300, renderCell: (params) => (
+        <Link onClick={() => setSelectedCompetitionId(params.row.name)}>{params.value}</Link>
     ) },
   ]
 
@@ -42,8 +42,8 @@ export default function PlayersPage() {
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
     <Container>
-      {selectedPlayerId && <PlayerCard playerId={selectedPlayerId} handleClose={() => setSelectedPlayerId(null)} />}
-      <h2>Players</h2>
+      {selectedCompetitionId && <PlayerCard playerId={selectedCompetitionId} handleClose={() => setSelectedCompetitionId(null)} />}
+      <h2>Competitions</h2>
       {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
       <DataGrid
         rows={data}
