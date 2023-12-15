@@ -5,20 +5,20 @@ import { DataGrid } from '@mui/x-data-grid';
 import PlayerCard from '../components/PlayerCard';
 const config = require('../config.json');
 
-export default function CompetitionsPage() {
+export default function TransfersPage() {
   const [pageSize, setPageSize] = useState(10);
   const [data, setData] = useState([]);
-  const [selectedCompetitionId, setSelectedCompetitionId] = useState(null);
+  const [selectedTransferId, setSelectedTransferId] = useState(null);
 
   const [name, setName] = useState('');
 
   useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/competitions`)
+    fetch(`http://${config.server_host}:${config.server_port}/transfers`)
       .then(res => res.json())
       .then(resJson => {
-        const CompetitionsWithId = resJson.map((Competition) => ({ id: Competition.competition_id, ...Competition }));
-        setData(CompetitionsWithId);
-        console.log(CompetitionsWithId);
+        const TransfersWithId = resJson.map((Transfer) => ({ id: Transfer.transfer_id, ...Transfer }));
+        setData(TransfersWithId);
+        console.log(TransfersWithId);
       });
   }, []);
 
@@ -28,9 +28,12 @@ export default function CompetitionsPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'name', headerName: 'competition_name', width: 300, renderCell: (params) => (
-        <Link onClick={() => setSelectedCompetitionId(params.row.name)}>{params.value}</Link>
+    { field: 'player_name', headerName: 'Player Name', width: 300, renderCell: (params) => (
+        <Link onClick={() => setSelectedTransferId(params.row.player_name)}>{params.value}</Link>
     ) },
+    { field: 'year', width: 300, headerName: 'Year' },
+    { field: 'transfer_period', width: 300, headerName: 'Transfer Period' },
+    { field: 'fee_cleaned', width: 300, headerName: 'Fee (Million Euros)' },
   ]
 
   // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
@@ -42,8 +45,8 @@ export default function CompetitionsPage() {
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
     <Container>
-      {selectedCompetitionId && <PlayerCard playerId={selectedCompetitionId} handleClose={() => setSelectedCompetitionId(null)} />}
-      <h2>Competitions</h2>
+      {selectedTransferId && <PlayerCard playerId={selectedTransferId} handleClose={() => setSelectedTransferId(null)} />}
+      <h2>Transfers</h2>
       {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
       <DataGrid
         rows={data}

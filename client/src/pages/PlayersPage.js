@@ -28,9 +28,12 @@ export default function PlayersPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'player_id', headerName: 'player_id', width: 300, renderCell: (params) => (
+    { field: 'name', headerName: 'Name', width: 300, renderCell: (params) => (
         <Link onClick={() => setSelectedPlayerId(params.row.player_id)}>{params.value}</Link>
     ) },
+    { field: 'country_of_birth', width: 300, headerName: 'Country' },
+    { field: 'current_club_name', width: 300, headerName: 'Club' },
+    { field: 'position', width: 300, headerName: 'Position' },
   ]
 
   // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
@@ -43,6 +46,8 @@ export default function PlayersPage() {
   return (
     <Container>
       {selectedPlayerId && <PlayerCard playerId={selectedPlayerId} handleClose={() => setSelectedPlayerId(null)} />}
+      <h2>Search Players</h2>
+      
       <h2>Players</h2>
       {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
       <DataGrid
