@@ -28,7 +28,7 @@ export default function CompetitionsPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'competition_name', headerName: 'Name', width: 300, renderCell: (params) => (
+    { field: 'name', headerName: 'competition_name', width: 300, renderCell: (params) => (
         <Link onClick={() => setSelectedCompetitionId(params.row.name)}>{params.value}</Link>
     ) },
   ]

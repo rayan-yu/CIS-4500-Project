@@ -46,7 +46,7 @@ export default function PlayerCard({ playerId, handleClose }) {
         p={3}
         style={{ background: 'white', borderRadius: '16px', border: '2px solid #000', width: 600 }}
       >
-        <h1>{playerData.name}</h1>
+        <h1>{playerData.id}</h1>
         <h2>Team:&nbsp;
           <NavLink to={`/clubs/${teamData.club_id}`}>{teamData.club_name}</NavLink>
         </h2>
