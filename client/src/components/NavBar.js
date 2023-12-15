@@ -36,10 +36,10 @@ export default function NavBar() {
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <NavText href='/' text='Soccer Analysis' isMain />
-          <NavText href='/Players' text='Players' />
-          <NavText href='/Teams' text='Teams' />
-          <NavText href='/Competitions' text='Competitions' />
+          <NavText href='/' text='FootyFacts' isMain />
+          <NavText href='/players' text='Players' />
+          <NavText href='/teams' text='Teams' />
+          <NavText href='/competitions' text='Competitions' />
         </Toolbar>
       </Container>
     </AppBar>
