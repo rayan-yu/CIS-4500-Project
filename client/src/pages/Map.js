@@ -6,8 +6,7 @@ import soccer from '../soccer.svg';
 
 const config = require('../config.json');
 
-export default function HomePage() {
-
+export default function Map() {
 
   return (
     <Container>

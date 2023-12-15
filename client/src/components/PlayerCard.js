@@ -24,17 +24,15 @@ export default function PlayerCard({ playerId, handleClose }) {
       .then(res => res.json())
       .then(resJson => {
         setPlayerData(resJson)
-        fetch(`http://${config.server_host}:${config.server_port}/clubs/${resJson.current_club_id}`)
-          .then(res => res.json())
-          .then(resJson => setTeamData(resJson));
-        })
+      })
+   
   }, [playerId]);
-
   
 
   const handleGraphChange = () => {
     setBarRadar(!barRadar);
   };
+  console.log(playerData.image_url);
 
   return (
     <Modal
@@ -46,14 +44,12 @@ export default function PlayerCard({ playerId, handleClose }) {
         p={3}
         style={{ background: 'white', borderRadius: '16px', border: '2px solid #000', width: 600 }}
       >
-        <h1>{playerData.id}</h1>
-        <h2>Team:&nbsp;
-          <NavLink to={`/clubs/${teamData.club_id}`}>{teamData.club_name}</NavLink>
+        <h1>{playerData.name}</h1>
+        <img src={playerData.image_url}/>
+        <h2>Current Team:&nbsp;
+          {playerData.current_club_name}
         </h2>
-        <ButtonGroup>
-          <Button disabled={barRadar} onClick={handleGraphChange}>Bar</Button>
-          <Button disabled={!barRadar} onClick={handleGraphChange}>Radar</Button>
-        </ButtonGroup>
+        
         <Button onClick={handleClose} style={{ left: '50%', transform: 'translateX(-50%)' }} >
           Close
         </Button>

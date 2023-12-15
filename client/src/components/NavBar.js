@@ -39,7 +39,9 @@ export default function NavBar() {
           <NavText href='/' text='FootyFacts' isMain />
           <NavText href='/players' text='Players' />
           <NavText href='/teams' text='Teams' />
-          <NavText href='/competitions' text='Competitions' />
+          <NavText href='/transfers' text='Transfers' />
+          <NavText href='/map' text='Map' />
+          <NavText href='/comparison' text='Compare' />
         </Toolbar>
       </Container>
     </AppBar>
