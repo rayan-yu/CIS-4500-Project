@@ -31,9 +31,9 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/Players" element={<PlayersPage />} />
-          <Route path="/Teams" element={<TeamsPage />} />
-          <Route path="/Competitions" element={<CompetitionsPage />} />
+          <Route path="/players" element={<PlayersPage />} />
+          <Route path="/teams" element={<TeamsPage />} />
+          <Route path="/competitions" element={<CompetitionsPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
