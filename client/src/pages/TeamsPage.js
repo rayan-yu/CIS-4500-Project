@@ -28,8 +28,8 @@ export default function TeamsPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'club_name', headerName: 'Name', width: 300, renderCell: (params) => (
-        <Link onClick={() => setSelectedTeamId(params.row.club_name)}>{params.value}</Link>
+    { field: 'club_code', headerName: 'club_code', width: 300, renderCell: (params) => (
+        <Link onClick={() => setSelectedTeamId(params.row.club_code)}>{params.value}</Link>
     ) },
   ]
 
