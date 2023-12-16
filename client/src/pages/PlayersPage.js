@@ -68,6 +68,7 @@ export default function PlayersPage() {
     { field: 'position', headerName: 'Position' },
   ]
 
+
   // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
   // The Grid component is super simple way to create a page layout. Simply make a <Grid container> tag
   // (optionally has spacing prop that specifies the distance between grid items). Then, enclose whatever
