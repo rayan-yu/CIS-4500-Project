@@ -38,8 +38,7 @@ export default function App() {
           <Route path="/player/:id" element={<PlayersPage />} />
           <Route path="/clubs" element={<ClubsPage />} />
           <Route path="/transfers" element={<TransfersPage />} />
-          <Route path="/map" element={<Map/>}/>
-          <Route path="/compare" element={<Comparison/>}/>
+          <Route path="/comparison" element={<Comparison/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
