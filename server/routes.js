@@ -131,7 +131,100 @@ const getPlayers = async function(req, res) {
         });
 }; 
 
-// Route 11: GET getFilteredClubs
+// Route 10: GET getPlayerStats
+const getPlayerStats = async function(req, res) {
+  const playerId = req.params.player_id; // This should be a numeric ID
+  const query = `
+    SELECT 
+      p.image_url,
+      COUNT(a.player_id) AS career_appearances,
+      COALESCE(SUM(a.minutes_played), 0) AS career_minutes,
+      COALESCE(SUM(a.goals), 0) AS career_goals,
+      COALESCE(SUM(a.assists), 0) AS career_assists,
+      COALESCE(SUM(a.yellow_cards), 0) AS career_yellow_cards,
+      COALESCE(SUM(a.red_cards), 0) AS career_red_cards,
+      p.market_value_in_eur
+    FROM Players p
+    LEFT JOIN Appearances a ON p.player_id = a.player_id
+    WHERE p.player_id = ${playerId}
+    GROUP BY p.player_id
+  `;
+
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.json(data.length > 0 ? data[0] : {}); // Send the player's stats or an empty object if not found
+    }
+  });
+};
+
+// Route 11: GET getPlayerBestGame
+const getPlayerBestGame = async function(req, res) {
+  const playerId = req.params.player_id; // This should be a numeric ID
+
+  const query = `
+    SELECT 
+      g.game_id,
+      CASE 
+        WHEN a.club_id = g.home_club_id THEN c_away.club_name 
+        ELSE c_home.club_name 
+      END AS opposing_team_name,
+      a.goals,
+      a.assists,
+      a.goals + a.assists AS total_contribution
+    FROM Appearances a
+    JOIN Games g ON a.game_id = g.game_id
+    JOIN Clubs c_home ON g.home_club_id = c_home.club_id
+    JOIN Clubs c_away ON g.away_club_id = c_away.club_id
+    WHERE a.player_id = ${playerId}
+    ORDER BY total_contribution DESC, a.goals DESC, a.assists DESC
+    LIMIT 1
+  `;
+
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.json(data.length > 0 ? data[0] : {}); // Send the best game stats or an empty object if not found
+    }
+  });
+};
+
+// Route 12: GET getPlayerFavoriteScoringClub
+const getPlayerFavoriteScoringClub = async function(req, res) {
+  const playerId = req.params.player_id; // This should be a numeric ID
+
+  const query = `
+    SELECT 
+      CASE 
+        WHEN a.club_id = g.home_club_id THEN c_away.club_name 
+        ELSE c_home.club_name 
+      END AS opposing_team_name,
+      SUM(a.goals) AS total_goals
+    FROM Appearances a
+    JOIN Games g ON a.game_id = g.game_id
+    JOIN Clubs c_home ON g.home_club_id = c_home.club_id
+    JOIN Clubs c_away ON g.away_club_id = c_away.club_id
+    WHERE a.player_id = ${playerId}
+    GROUP BY opposing_team_name
+    ORDER BY total_goals DESC
+    LIMIT 1
+  `;
+
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.json(data.length > 0 ? data[0] : {}); // Send the favorite scoring club stats or an empty object if not found
+    }
+  });
+};
+
+// Route 13: GET getFilteredClubs
 const getClubs = async function(req, res) {
   const clubNameLike = req.query.clubName ?? '';
   const location = req.query.location ?? '';
