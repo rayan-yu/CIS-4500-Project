@@ -358,19 +358,44 @@ LIMIT 1;
 
 // match-up
 const getMatchupStats = async function(req, res) {
-  const query = `
-  SELECT 
-      COUNT(*) AS total_games,
-      SUM(CASE WHEN cg.club_id = c1.club_id AND cg.is_win = 1 THEN 1 ELSE 0 END) AS team1_wins,
-      SUM(CASE WHEN cg.club_id = c2.club_id AND cg.is_win = 1 THEN 1 ELSE 0 END) AS team2_wins,
-      SUM(CASE WHEN a.club_id = c1.club_id THEN a.goals ELSE 0 END) AS team1_goals,
-      SUM(CASE WHEN a.club_id = c2.club_id THEN a.goals ELSE 0 END) AS team2_goals,
-      SUM(CASE WHEN a.club_id = c1.club_id THEN a.assists ELSE 0 END) AS team1_assists,
-      SUM(CASE WHEN a.club_id = c2.club_id THEN a.assists ELSE 0 END) AS team2_assists,
-      SUM(CASE WHEN a.club_id = c1.club_id THEN a.yellow_cards ELSE 0 END) AS team1_yellow_cards,
-      SUM(CASE WHEN a.club_id = c2.club_id THEN a.yellow_cards ELSE 0 END) AS team2_yellow_cards,
-      SUM(CASE WHEN a.club_id = c1.club_id THEN a.red_cards ELSE 0 END) AS team1_red_cards,
-      SUM(CASE WHEN a.club_id = c2.club_id THEN a.red_cards ELSE 0 END) AS team2_red_cards,
+  const home_club_name = req.query.home_club_name ?? '';
+  const away_club_name = req.query.away_club_name ?? '';
+  console.log(home_club_name);
+  console.log(away_club_name);
+  connection.query(
+    `SELECT
+    COUNT(*) AS total_games,
+    SUM(CASE WHEN home_club_name = '${home_club_name}' AND
+                  away_club_name = '${away_club_name}' AND
+                  home_club_goals > away_club_goals THEN 1
+             WHEN away_club_name = '${home_club_name}' AND
+                  home_club_name = '${away_club_name}' AND
+                  away_club_goals > home_club_goals THEN 1
+             ELSE 0 END) AS team1_wins,
+    SUM(CASE WHEN home_club_name = '${home_club_name}' AND
+                  away_club_name = '${away_club_name}' AND
+                  away_club_goals > home_club_goals THEN 1
+             WHEN away_club_name = '${home_club_name}' AND
+                  home_club_name = '${away_club_name}' AND
+                  home_club_goals > away_club_goals THEN 1
+             ELSE 0 END) AS team2_wins,
+    SUM(CASE WHEN home_club_name = '${home_club_name}' AND
+                  away_club_name = '${away_club_name}' AND
+                  away_club_goals = home_club_goals THEN 1
+             WHEN away_club_name = '${home_club_name}' AND
+                      home_club_name = '${away_club_name}' AND
+                      home_club_goals = away_club_goals THEN 1
+             ELSE 0 END) AS draws,
+     SUM(CASE WHEN home_club_name = '${home_club_name}' AND
+                    away_club_name = '${away_club_name}' THEN home_club_goals
+            WHEN away_club_name = '${home_club_name}' AND
+                     home_club_name = '${away_club_name}' THEN away_club_goals
+             ELSE 0 END) AS team1_goals,
+     SUM(CASE WHEN home_club_name = '${home_club_name}' AND
+                    away_club_name = '${away_club_name}' THEN away_club_goals
+            WHEN away_club_name = '${home_club_name}' AND
+                     home_club_name = '${away_club_name}' THEN home_club_goals
+             ELSE 0 END) AS team2_goals,
       (
         SELECT p.name FROM Players p
         JOIN Appearances a ON p.player_id = a.player_id
@@ -392,35 +417,34 @@ const getMatchupStats = async function(req, res) {
         JOIN Appearances a ON p.player_id = a.player_id
         WHERE a.game_id IN (SELECT game_id FROM Games WHERE home_club_id IN (c1.club_id, c2.club_id) AND away_club_id IN (c1.club_id, c2.club_id))
         GROUP BY p.player_id
-        ORDER BY COUNT(*) DESC
+        ORDER BY COUNT(*)
         LIMIT 1
       ) AS top_appearances,
       (
-        SELECT comp.competition_name FROM Competitions comp
+        SELECT comp.name FROM Competitions comp
         JOIN Games g ON comp.competition_id = g.competition_id
         WHERE g.game_id IN (SELECT game_id FROM Games WHERE home_club_id IN (c1.club_id, c2.club_id) AND away_club_id IN (c1.club_id, c2.club_id))
         GROUP BY comp.competition_id
         ORDER BY COUNT(*) DESC
         LIMIT 1
       ) AS most_played_competition
-    FROM Club_Games cg
-    JOIN Clubs c1 ON cg.club_id = c1.club_id
-    JOIN Clubs c2 ON cg.opponent_club_id = c2.club_id
-    JOIN Appearances a ON cg.game_id = a.game_id
-    WHERE c1.name = ? AND c2.name = ?
-  `;
-
-
-  connection.query(query, (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal server error' });
-    } else {
-      res.json(data.length > 0 ? data[0] : {}); // Send the most played matchup or an empty object if not found
-    }
-  });
-};
-
+    FROM
+        Games g
+        JOIN Clubs c1 ON g.home_club_id = c1.club_id
+        JOIN Clubs c2 ON g.away_club_id = c2.club_id
+    WHERE
+        (home_club_name = '${home_club_name}' AND away_club_name = '${away_club_name}') OR
+        (home_club_name = '${away_club_name}' AND away_club_name = '${home_club_name}');
+      `, (err, data) => {
+        if (err) {
+          console.log(err);
+          res.json([]);
+        } else {
+          res.send(data);
+        }
+      });
+    }; 
+    
 module.exports = {
   player,
   players,
@@ -438,7 +462,7 @@ module.exports = {
   // getClubCompetitions,
   // getTopTransfersForClub,
   // getTransferStats,
-  // getMatchupStats,
+  getMatchupStats,
   // getTransferHistoryBetweenClubs,
   getMostPlayedMatchup
 }

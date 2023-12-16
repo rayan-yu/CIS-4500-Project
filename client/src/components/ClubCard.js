@@ -87,7 +87,6 @@ export default function ClubCard({ clubId, handleClose }) {
     
   ]
   
-  
 const Tab = styled.button`
   font-size: 20px;
   padding: 10px 60px;

@@ -42,7 +42,7 @@ export default function NavBar() {
           <NavButton href='/players' text='Players' />
           <NavButton href='/clubs' text='Clubs' />
           <NavButton href='/transfers' text='Transfers' />
-          <NavButton href='/comparison' text='Compare' />
+          <NavButton href='/matchup' text='Matchup' />
         </Toolbar>
       </Container>
     </AppBar>
