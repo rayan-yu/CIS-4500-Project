@@ -16,25 +16,22 @@ export default function Matchup() {
   const home_club_name = req.query.home_club_name ?? '';
   const away_club_name = req.query.away_club_name ?? '';
 */
+useEffect(() => {
+  // Hint: here is some pseudocode to guide you
+  console.log(matchupStats)
+  
+}, [pageSize]);
 
 useEffect(() => {
     // Hint: here is some pseudocode to guide you
     fetch(`http://${config.server_host}:${config.server_port}/getMostPlayedMatchup`)
       .then(res => res.json())
       .then(resJson => {
-        setMpMatchup(resJson);
+        setMpMatchup({id: 0, ...resJson});
       });
   }, []);
 
-  // useEffect(() => {
-  //   // Hint: here is some pseudocode to guide you
-  //   fetch(`http://${config.server_host}:${config.server_port}/getMatchupStats`)
-  //     .then(res => res.json())
-  //     .then(resJson => {
-  //       setMatchupStats([{id: 0, ...resJson}]);
-  //       console.log(resJson);
-  //     });
-  // }, []);
+  
 
   const matchup = () => {
     // Hint: here is some pseudocode to guide you
@@ -42,7 +39,8 @@ useEffect(() => {
     `&away_club_name=${awayClub}`)
       .then(res => res.json())
       .then(resJson => {
-        setMatchupStats([{id: 0, ...resJson}]);
+        const matchupWithId = resJson.map((m) => ({ id: 0, ...m }));
+        setMatchupStats(matchupWithId);
         console.log(resJson);
       });
   }
@@ -59,18 +57,18 @@ useEffect(() => {
    * "most_played_competition":null
    */
 
-  const columns = [
+  const columns1 = [
     { field: 'total_games', headerName: 'Total Games' },
     { field: 'team1_wins', headerName: 'Club 1 Wins' },
     { field: 'team2_wins', headerName: 'Club 2 Wins' },
     { field: 'draws', headerName: 'Draws' },
     { field: 'team1_goals', headerName: 'Club 1 Goals' },
     { field: 'team2_goals', headerName: 'Club 2 Goals' },
-    { field: 'top_scorer', headerName: 'Top Scorer' },
-    { field: 'top_assister', headerName: 'Top Assister' },
-    { field: 'top_appearances', headerName: 'Top Appearances' },
-    { field: 'most_played_competition', headerName: 'Most Played Competition' }
-  ]
+    { field: 'top_scorer', width: 200, headerName: 'Top Scorer' },
+    { field: 'top_assister', width: 200, headerName: 'Top Assister' },
+    { field: 'top_appearances', width: 200, headerName: 'Top Appearances' },
+    { field: 'most_played_competition', width: 200, headerName: 'Most Played Competition' }
+  ];
   
 //   const matchup = () => {
 //     fetch(`http://${config.server_host}:${config.server_port}/getMatchupStats?home_club_name=${homeClub}` +
@@ -88,7 +86,7 @@ useEffect(() => {
   return (
         <Box
             p={3}
-            style={{ background: 'white', borderRadius: '16px', border: '2px solid #000', width: 1200 }}
+            style={{ borderRadius: '16px', border: '2px solid #000', width: 1200 }}
         >
       <Grid container spacing={6}>
         <Grid item xs={6}>
@@ -103,14 +101,16 @@ useEffect(() => {
         Search
       </Button>
 
+      
       <DataGrid
           rows={matchupStats}
-          columns={columns}
+          columns={columns1}
           pageSize={pageSize}
           rowsPerPageOptions={[5, 10, 25]}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           autoHeight
       />
+      
         
     </Box>
   );
