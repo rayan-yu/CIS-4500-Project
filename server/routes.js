@@ -354,7 +354,7 @@ const getMostPlayedMatchup = async function(req, res) {
 };
 
 // match-up
-const getMostPlayedMatchup = async function(req, res) {
+const getMatchupStats = async function(req, res) {
   const query = `
   SELECT 
       COUNT(*) AS total_games,
