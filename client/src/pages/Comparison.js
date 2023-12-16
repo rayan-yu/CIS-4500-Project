@@ -8,10 +8,20 @@ const config = require('../config.json');
 
 export default function Comparison() {
 
+    const [matchup, setMatchup] = useState({});
+
+    useEffect(() => {
+        // Hint: here is some pseudocode to guide you
+        fetch(`http://${config.server_host}:${config.server_port}/getMostPlayedMatchup`)
+          .then(res => res.json())
+          .then(resJson => {
+            setMatchup(resJson);
+          });
+      }, []);
+
   return (
     <Container>
-      <h1>Welcome to FootyFacts!</h1>
-      <img style={{ justifyContent: "center", alignItems: "center", width: "80%", height: "80%"}} src={soccer}></img>
+      <h4>Footy Fact: {matchup.home_club_name ? matchup.home_club_name : "____"} as the home team has played {matchup.away_club_name ? matchup.away_club_name : "____"} as the away team {matchup.match_count ? matchup.match_count: "____"} times, the most of any two teams in our dataset.</h4>
     </Container>
   );
 };

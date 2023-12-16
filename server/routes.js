@@ -283,6 +283,45 @@ const getClubs = async function(req, res) {
   });
 }; 
 
+const getMostPlayedMatchup = async function(req, res) {
+  const query = `
+WITH MatchUpCounts AS (
+    SELECT home_club_id, away_club_id, COUNT(*) AS match_count
+    FROM Games
+    GROUP BY home_club_id, away_club_id
+),
+TotalGoals AS (
+    SELECT g.home_club_id, g.away_club_id, SUM(CASE WHEN ge.type = 'Goals' THEN 1 ELSE 0 END) AS total_goals
+    FROM Game_Events ge
+    JOIN Games g ON ge.game_id = g.game_id
+    GROUP BY g.home_club_id, g.away_club_id
+),
+MostPlayedMatchUp AS (
+    SELECT home_club_id, away_club_id
+    FROM MatchUpCounts
+    WHERE match_count = (SELECT MAX(match_count) FROM MatchUpCounts)
+    LIMIT 1
+)
+SELECT mpmu.home_club_id, hc.name AS home_club_name, mpmu.away_club_id, ac.name AS away_club_name, mc.match_count, tg.total_goals
+FROM MostPlayedMatchUp mpmu
+JOIN MatchUpCounts mc ON mpmu.home_club_id = mc.home_club_id AND mpmu.away_club_id = mc.away_club_id
+JOIN TotalGoals tg ON mpmu.home_club_id = tg.home_club_id AND mpmu.away_club_id = tg.away_club_id
+JOIN Clubs hc ON mpmu.home_club_id = hc.club_id
+JOIN Clubs ac ON mpmu.away_club_id = ac.club_id;
+  `;
+
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.json(data.length > 0 ? data[0] : {}); // Send the most played matchup or an empty object if not found
+    }
+  });
+};
+
+
+
 module.exports = {
   player,
   players,
@@ -302,5 +341,5 @@ module.exports = {
   // getTransferStats,
   // getMatchupStats,
   // getTransferHistoryBetweenClubs,
-  // getMostPlayedMatchup
+  getMostPlayedMatchup
 }
