@@ -134,7 +134,6 @@ const getPlayers = async function(req, res) {
 // Route 10: GET getPlayerStats
 const getPlayerStats = async function(req, res) {
   const playerId = req.params.player_id; // This should be a numeric ID
-
   const query = `
     SELECT 
       p.image_url,
@@ -147,7 +146,7 @@ const getPlayerStats = async function(req, res) {
       p.market_value_in_eur
     FROM Players p
     LEFT JOIN Appearances a ON p.player_id = a.player_id
-    WHERE p.player_id = ${req.params.competition_id}
+    WHERE p.player_id = ${playerId}
     GROUP BY p.player_id
   `;
 
