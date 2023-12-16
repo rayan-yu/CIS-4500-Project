@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField } from '@mui/material';
+import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import PlayerCard from '../components/PlayerCard';
@@ -76,18 +76,15 @@ export default function PlayersPage() {
   // two grid items of the same size on the same row, define two grid items with xs={6}. The Grid container
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
-    <Container>
+    <Container maxWidth="xl">
       {selectedPlayerId && <PlayerCard playerId={selectedPlayerId} handleClose={() => setSelectedPlayerId(null)} />}
-      <h2>Search Players</h2>
-      <Grid container spacing={6}>
-        <Grid item xs={6}>
-          <TextField label='Name' value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%" }}/>
-        </Grid>
-        <Grid item xs={6}>
-          <TextField label='Club' value={clubName} onChange={(e) => setClubName(e.target.value)} style={{ width: "100%" }}/>
-        </Grid>
-        <Grid item xs={6}>
-          <p>Season</p>
+
+      <Grid container spacing={12}  style={{ marginTop: '1px' }}>
+        <Grid item xs={12} md={2.5}>
+          <Typography variant="h5" style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}>Search Players</Typography>
+          <TextField label='Name' value={name} onChange={(e) => setName(e.target.value)} style={{ width: '100%', marginTop: '40px' }} />
+          <TextField label='Club' value={clubName} onChange={(e) => setClubName(e.target.value)} style={{ width: '100%', marginTop: '40px'  }} />
+          <Typography style={{ marginTop: '30px' }}>Season</Typography>
           <Slider
             value={season}
             min={1990}
@@ -96,9 +93,7 @@ export default function PlayersPage() {
             onChange={(e, newValue) => setSeason(newValue)}
             valueLabelDisplay='auto'
           />
-        </Grid>
-        <Grid item xs={6}>
-          <p>Height</p>
+          <Typography style={{ marginTop: '20px' }}>Height</Typography>
           <Slider
             value={height}
             min={100}
@@ -107,24 +102,28 @@ export default function PlayersPage() {
             onChange={(e, newValue) => setHeight(newValue)}
             valueLabelDisplay='auto'
           />
+          <Button onClick={search} style={{ left: '50%', transform: 'translateX(-50%)', marginTop: '20px', 
+          borderRadius: '20px', // Set border-radius for rounded corners
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)', // Slight shading on hover
+          } }}>
+            Search
+          </Button>
+        </Grid>
+
+        <Grid item xs={12} md={9.5}>
+          <Typography variant="h5" style={{ fontFamily: 'Verdana, Geneva, sans-serif', marginBottom: '20px' }}>Players</Typography>
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={pageSize}
+            rowsPerPageOptions={[5, 10, 25]}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            autoHeight
+            style={{ backgroundColor: '#E7FACD' }}
+          />
         </Grid>
       </Grid>
-      <Button onClick={() => search() } style={{ left: '50%', transform: 'translateX(-50%)' }}>
-        Search
-      </Button>
-
-      <h2>Players</h2>
-      {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
-      <DataGrid
-        rows={data}
-        columns={columns}
-        pageSize={pageSize}
-        rowsPerPageOptions={[5, 10, 25]}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        autoHeight
-        style={{ backgroundColor: '#E7FACD' }}
-        
-      />
     </Container>
   );
 }
