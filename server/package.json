@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "dependencies": {
     "cors": "^2.8.5",
