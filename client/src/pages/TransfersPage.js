@@ -17,16 +17,6 @@ export default function TransfersPage() {
   const [age, setAge] = useState([0, 100]);
   const [fee, setFee] = useState([0, 100]);
 
-/* 
-  const playerNameLike = req.query.name ?? '';
-  const year = req.query.year ?? 0;
-  const clubNameLike = req.query.clubName ?? 0;
-  const minAge = req.query.minAge ?? 0;
-  const maxAge = req.query.maxAge ?? 0;
-  const minFeeCleaned = req.query.minFeeCleaned ?? 0;
-  const maxFeeCleaned = req.query.maxFeeCleaned ?? 0;
-*/
-
   useEffect(() => {
     fetch(`http://${config.server_host}:${config.server_port}/getTransfers`)
       .then(res => res.json())
@@ -36,6 +26,7 @@ export default function TransfersPage() {
         console.log(transfersWithId);
       });
   }, []);
+
 
   const search = () => {
     fetch(`http://${config.server_host}:${config.server_port}/getTransfers?name=${name}` +
@@ -48,23 +39,16 @@ export default function TransfersPage() {
       .then(resJson => {
         // DataGrid expects an array of objects with a unique id.
         // To accomplish this, we use a map with spread syntax (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-        const transfersWithId = resJson.map((transfer) => ({ id: transfer.player_name, ...transfer }));
+        const transfersWithId = resJson.map((transfer) => ({ id: transfer.transfer_id, ...transfer }));
         setData(transfersWithId);
       });
   }
 
-  // const setTransferInfo = (params) => {
-  //   setSelectedTransferId(params.row.transferId)
-  // }
 
-  // This defines the columns of the table of songs used by the DataGrid component.
-  // The format of the columns array and the DataGrid component itself is very similar to our
-  // LazyTable component. The big difference is we provide all data to the DataGrid component
-  // instead of loading only the data we need (which is necessary in order to be able to sort by column)
+
+  
   const columns = [
-    { field: 'player_name', headerName: 'Player Name', width: 300, renderCell: (params) => (
-      <Link onClick={() => setSelectedTransferId(params.row.player_name)}>{params.value}</Link>
-    ) },
+    { field: 'player_name', headerName: 'Player Name', width: 300},
     { field: 'year', width: 300, headerName: 'Year' },
     { field: 'transfer_period', width: 300, headerName: 'Transfer Period' },
     { field: 'fee_cleaned', width: 300, headerName: 'Fee (Million Euros)' },
@@ -79,7 +63,6 @@ export default function TransfersPage() {
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
     <Container>
-      {selectedTransferId && <PlayerCard transferId={selectedTransferId} handleClose={() => setSelectedTransferId(null)} />}
       <h2>Search Transfers</h2>
       <Grid container spacing={6}>
         <Grid item xs={6}>

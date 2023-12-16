@@ -156,7 +156,7 @@ function TabGroup() {
         style={{ background: 'white', borderRadius: '16px', border: '2px solid #000', width: 600 }}
       >
         <h2>Current Team:&nbsp;
-          {clubData.club_code}
+          {clubData.name}
         </h2>
 
         <TabGroup/>

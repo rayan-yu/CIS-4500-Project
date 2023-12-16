@@ -363,7 +363,7 @@ module.exports = {
   getPlayerStats,
   getClubs,
   getGames,
-  getTransfers
+  getTransfers,
   // getPlayerBestGame,
   // getPlayerFavoriteScoringClub,
   // getClubStats,

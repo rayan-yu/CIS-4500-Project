@@ -22,12 +22,14 @@ export default function Comparison() {
   return (
     <Container>
       <h4>Footy Fact: {matchup.home_club_name ? matchup.home_club_name : "____"} as the home team has played {matchup.away_club_name ? matchup.away_club_name : "____"} as the away team {matchup.match_count ? matchup.match_count: "____"} times, the most of any two teams in our dataset.</h4>
-      <Stack direction={"row"}>
+      <Stack direction={"row"} rowGap={"30%"}>
             <Stack>
+                <h1>Team 1: </h1>
 
             </Stack>
             <Stack>
-                
+                <h1>Team 2: </h1>
+
             </Stack>
       </Stack>
     </Container>
