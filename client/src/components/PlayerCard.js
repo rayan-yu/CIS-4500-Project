@@ -11,7 +11,7 @@ const config = require('../config.json');
 // (see HomePage.js for example), since it depends on the state (selectedSongId) of the parent
 export default function PlayerCard({ playerId, handleClose }) {
   const [playerData, setPlayerData] = useState({});
-  const [teamData, setTeamData] = useState({});
+  const [clubData, setClubData] = useState({});
 
   const [barRadar, setBarRadar] = useState(true);
 
@@ -46,7 +46,7 @@ export default function PlayerCard({ playerId, handleClose }) {
       >
         <h1>{playerData.name}</h1>
         <img src={playerData.image_url}/>
-        <h2>Current Team:&nbsp;
+        <h2>Current Club:&nbsp;
           {playerData.current_club_name}
         </h2>
         

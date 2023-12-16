@@ -17,6 +17,7 @@ app.get('/players/:player_id', routes.player);
 app.get('/clubs', routes.clubs);
 app.get('/clubs/:club_id', routes.club);
 app.get('/getPlayers', routes.getPlayers);
+app.get('/getClubs', routes.getClubs);
 // app.get('/competitions', routes.competitions);
 // app.get('/competitions/:competition_id', routes.competition);
 // app.get('/games', routes.games);

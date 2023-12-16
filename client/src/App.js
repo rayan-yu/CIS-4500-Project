@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 
 import PlayersPage from './pages/PlayersPage';
-import TeamsPage from './pages/TeamsPage';
+import ClubsPage from './pages/ClubsPage';
 import TransfersPage from "./pages/TransfersPage";
 import PlayerCard from "./components/PlayerCard";
 import Map from "./pages/Map";
@@ -36,7 +36,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/players" element={<PlayersPage />} />
           <Route path="/player/:id" element={<PlayersPage />} />
-          <Route path="/teams" element={<TeamsPage />} />
+          <Route path="/clubs" element={<ClubsPage />} />
           <Route path="/transfers" element={<TransfersPage />} />
           <Route path="/map" element={<Map/>}/>
           <Route path="/compare" element={<Comparison/>}/>

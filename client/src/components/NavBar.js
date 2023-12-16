@@ -38,7 +38,7 @@ export default function NavBar() {
         <Toolbar disableGutters>
           <NavText href='/' text='FootyFacts' isMain />
           <NavText href='/players' text='Players' />
-          <NavText href='/teams' text='Teams' />
+          <NavText href='/clubs' text='Clubs' />
           <NavText href='/transfers' text='Transfers' />
           <NavText href='/map' text='Map' />
           <NavText href='/comparison' text='Compare' />
