@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import ClubCard from '../components/ClubCard';
 
 import PlayerCard from '../components/PlayerCard';
 
@@ -10,6 +11,7 @@ export default function ClubsPage() {
   const [pageSize, setPageSize] = useState(10);
   const [data, setData] = useState([]);
   const [selectedClubId, setSelectedClubId] = useState(null);
+  const [selectedClubCode, setSelectedClubCode] = useState(null);
 
   /**
   const clubNameLike = req.query.clubName ?? '';
@@ -54,13 +56,17 @@ export default function ClubsPage() {
       });
   }
 
+  const setClubInfo = (params) => {
+    setSelectedClubId(params.row.club_id)
+  }
+
   // This defines the columns of the table of songs used by the DataGrid component.
   // The format of the columns array and the DataGrid component itself is very similar to our
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
     { field: 'club_code', headerName: 'club_code', renderCell: (params) => (
-        <Link onClick={() => setSelectedClubId(params.row.club_code)}>{params.value}</Link>
+        <Link onClick={() => setClubInfo(params)}>{params.value}</Link>
     ) },
     { field: 'domestic_competition_id', width: 200, headerName: 'Location' },
     { field: 'stadium_name', width: 200, headerName: 'Stadium' },
@@ -79,7 +85,7 @@ export default function ClubsPage() {
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
     <Container>
-      {selectedClubId && <PlayerCard clubId={selectedClubId} handleClose={() => setSelectedClubId(null)} />}
+      {selectedClubId && <ClubCard clubId={selectedClubId} clubCode={selectedClubCode} handleClose={() => setSelectedClubId(null)} />}
       <h2>Search Clubs</h2>
       <Grid container spacing={6}>
         <Grid item xs={6}>

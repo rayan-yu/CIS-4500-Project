@@ -89,6 +89,7 @@ const getPlayers = async function(req, res) {
 */
   const playerNameLike = req.query.name ?? '';
   const clubNameLike = req.query.clubName ?? '';
+  const clubId = req.query.clubId ?? "%";
   const minSeason = req.query.minSeason ?? 1990;
   const maxSeason = req.query.maxSeason ?? 2023;
   const minHeight = req.query.minHeight ?? 0;
@@ -117,6 +118,7 @@ const getPlayers = async function(req, res) {
       FROM Players
       WHERE first_name LIKE '%${playerNameLike}%'
         AND current_club_name LIKE '%${clubNameLike}%'
+        AND current_club_id LIKE '${clubId}'
         AND height_in_cm BETWEEN ${minHeight} AND ${maxHeight}
         AND last_season BETWEEN ${minSeason} AND ${maxSeason}
         Order By last_name, first_name, player_id DESC
@@ -130,6 +132,30 @@ const getPlayers = async function(req, res) {
           }
         });
 }; 
+
+// Route 9: Get /getGames
+const getGames = async function(req, res) {
+  
+  const home_club = req.query.home_club_id ?? '%';
+  const away_club = req.query.away_club_id ?? '%';
+  
+  connection.query(`
+      SELECT *
+      FROM Games
+      WHERE home_club_id = '${home_club}'
+      OR away_club_id = '${away_club}'
+      ORDER BY season DESC
+        `,
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            res.json([]);
+          } else {
+            res.send(data);
+          }
+        });
+}; 
+
 
 // Route 10: GET getPlayerStats
 const getPlayerStats = async function(req, res) {
@@ -265,7 +291,8 @@ module.exports = {
   // new queries below
   getPlayers,
   getPlayerStats,
-  getClubs
+  getClubs,
+  getGames,
   // getPlayerBestGame,
   // getPlayerFavoriteScoringClub,
   // getClubStats,
