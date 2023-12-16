@@ -52,6 +52,7 @@ export default function TransfersPage() {
   const search = () => {
     fetch(`http://${config.server_host}:${config.server_port}/getTransfers?name=${name}` +
       `&clubName=${clubName}` +
+      `&clubName2=${clubName}`+
       `&minYear=${year[0]}&maxYear=${year[1]}` +
       `&minAge=${age[0]}&maxAge=${age[1]}` +
       `&minFeeCleaned=${fee[0]}&maxFeeCleaned=${fee[1]}`

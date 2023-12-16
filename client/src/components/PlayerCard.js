@@ -12,6 +12,7 @@ const config = require('../config.json');
 // but in our implementation whether the Modal is open is handled by the parent component
 // (see HomePage.js for example), since it depends on the state (selectedSongId) of the parent
 export default function PlayerCard({ playerId, handleClose }) {
+ 
   const [playerData, setPlayerData] = useState({});
   const [playerStats, setPlayerStats] = useState([]);
   const [pageSize, setPageSize] = useState(10);

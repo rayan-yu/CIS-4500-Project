@@ -58,15 +58,17 @@ export default function PlayersPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'name', headerName: 'Name', width: 200, renderCell: (params) => (
+    { field: 'name', headerName: 'Name', width: 300, renderCell: (params) => (
         <Link onClick={() => setSelectedPlayerId(params.row.player_id)}>{params.value}</Link>
     ) },
-    { field: 'country_of_birth', width: 200, headerName: 'Country' },
-    { field: 'current_club_name', width: 200, headerName: 'Club' },
-    { field: 'last_season', width: 200, headerName: 'Season' },
-    { field: 'height_in_cm', width: 200, headerName: 'Height' },
-    { field: 'position', width: 200, headerName: 'Position' },
+    { field: 'country_of_birth', headerName: 'Country' },
+    { field: 'current_club_name', width: 300, headerName: 'Club' },
+    { field: 'last_season', headerName: 'Season' },
+    { field: 'height_in_cm', headerName: 'Height' },
+    { field: 'position', headerName: 'Position' },
   ]
+
+
 
   // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
   // The Grid component is super simple way to create a page layout. Simply make a <Grid container> tag
@@ -122,8 +124,6 @@ export default function PlayersPage() {
         rowsPerPageOptions={[5, 10, 25]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         autoHeight
-        style={{ backgroundColor: '#E7FACD' }}
-        
       />
     </Container>
   );

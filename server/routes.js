@@ -287,6 +287,7 @@ const getClubs = async function(req, res) {
 const getTransfers = async function(req, res) {
   const playerNameLike = req.query.name ?? '';
   const clubNameLike = req.query.clubName ?? '';
+  const clubNameLike2 = req.query.clubName2 ?? '';
   const minYear = req.query.minYear ?? 1993;
   const maxYear = req.query.maxYear ?? 2022;
   const minAge = req.query.minAge ?? 0;
@@ -302,6 +303,7 @@ const getTransfers = async function(req, res) {
     JOIN Clubs c2 ON t.club_involved_id = c2.club_id
     WHERE t.player_name LIKE '%${playerNameLike}%'
     AND c.name LIKE '%${clubNameLike}%'
+    OR c2.name LIKE '%${clubNameLike2}%'
     AND t.year BETWEEN ${minYear} AND ${maxYear}
     AND t.age BETWEEN ${minAge} AND ${maxAge}
     AND t.fee_cleaned BETWEEN ${minFeeCleaned} AND ${maxFeeCleaned}
