@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/CIS-4500-Project/client/static/js/main.cca9a1e0.js",
-    "static/media/footylogo.png": "/CIS-4500-Project/client/static/media/footylogo.07f8f04648b818fe674f.png",
-    "static/media/soccer.svg": "/CIS-4500-Project/client/static/media/soccer.88823381aa6b449624435d446941fad2.svg",
-    "index.html": "/CIS-4500-Project/client/index.html",
-    "main.cca9a1e0.js.map": "/CIS-4500-Project/client/static/js/main.cca9a1e0.js.map"
+    "main.js": "/CIS-4500-Project/client/src/pages/HomePage.js/static/js/main.4fb0a79f.js",
+    "static/media/footylogo.png": "/CIS-4500-Project/client/src/pages/HomePage.js/static/media/footylogo.07f8f04648b818fe674f.png",
+    "static/media/soccer.svg": "/CIS-4500-Project/client/src/pages/HomePage.js/static/media/soccer.88823381aa6b449624435d446941fad2.svg",
+    "index.html": "/CIS-4500-Project/client/src/pages/HomePage.js/index.html",
+    "main.4fb0a79f.js.map": "/CIS-4500-Project/client/src/pages/HomePage.js/static/js/main.4fb0a79f.js.map"
   },
   "entrypoints": [
-    "static/js/main.cca9a1e0.js"
+    "static/js/main.4fb0a79f.js"
   ]
 }
