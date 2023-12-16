@@ -264,6 +264,7 @@ module.exports = {
   clubs,
   // new queries below
   getPlayers,
+  getPlayerStats,
   getClubs
   // getPlayerBestGame,
   // getPlayerFavoriteScoringClub,
