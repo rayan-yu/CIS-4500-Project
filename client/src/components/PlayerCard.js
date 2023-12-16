@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Box, Button, ButtonGroup, Modal } from '@mui/material';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import { NavLink } from 'react-router-dom';
+import { DataGrid } from '@mui/x-data-grid';
+import { getRowIdFromRowModel } from '@mui/x-data-grid/hooks/features/rows/gridRowsUtils';
 
 const config = require('../config.json');
 
@@ -11,9 +13,10 @@ const config = require('../config.json');
 // (see HomePage.js for example), since it depends on the state (selectedSongId) of the parent
 export default function PlayerCard({ playerId, handleClose }) {
   const [playerData, setPlayerData] = useState({});
-  const [clubData, setClubData] = useState({});
-
-  const [barRadar, setBarRadar] = useState(true);
+  const [playerStats, setPlayerStats] = useState([]);
+  const [pageSize, setPageSize] = useState(10);
+  const [data, setData] = useState([]);
+  let temp = 0;
 
   // TODO (TASK 20): fetch the song specified in songId and based on the fetched album_id also fetch the album data
   // Hint: you need to both fill in the callback and the dependency array (what variable determines the information you need to fetch?)
@@ -25,14 +28,36 @@ export default function PlayerCard({ playerId, handleClose }) {
       .then(resJson => {
         setPlayerData(resJson)
       })
+
+      
    
   }, [playerId]);
+
+  useEffect(() => {
+    // Hint: here is some pseudocode to guide you
+    fetch(`http://${config.server_host}:${config.server_port}/getPlayerStats/${playerId}`)
+      .then(res => res.json())
+      .then(resJson => {
+        setPlayerStats([{id: 0, ...resJson}]);
+      });
+  }, [playerId]);
+
   
 
-  const handleGraphChange = () => {
-    setBarRadar(!barRadar);
-  };
-  console.log(playerData.image_url);
+  const columns = [
+    { field: 'career_appearances', headerName: 'Appearances' },
+    { field: 'career_minutes', headerName: 'Minutes' },
+    { field: 'career_goals', headerName: 'Goals' },
+    { field: 'career_assists', headerName: 'Assists' },
+    { field: 'career_yellow_cards', headerName: 'Yellow Cards' },
+    { field: 'career_red_cards', headerName: 'Red Cards' },
+    { field: 'market_value_in_eur', headerName: 'Market Value (Euro)' },
+    
+
+  ]
+  
+  
+  
 
   return (
     <Modal
@@ -45,10 +70,35 @@ export default function PlayerCard({ playerId, handleClose }) {
         style={{ background: 'white', borderRadius: '16px', border: '2px solid #000', width: 600 }}
       >
         <h1>{playerData.name}</h1>
-        <img src={playerData.image_url}/>
-        <h2>Current Club:&nbsp;
+        <div>
+          <img src={playerData.image_url} style={{width: "30%"}}/>
+          <div style={{marginLeft: "10%", display: "inline-block"}}> 
+            <p>Date of Birth:&nbsp;
+          {playerData.date_of_birth}</p>
+          <p>Country of Birth:&nbsp;
+          {playerData.country_of_birth}</p>
+          <p>Nationality:&nbsp;
+          {playerData.country_of_citizenship}</p>
+          <p>Position:&nbsp;
+          {playerData.position}</p>
+          <p>Foot:&nbsp;
+          {playerData.foot}</p>
+          <p>Height:&nbsp;
+          {playerData.height_in_cm}</p>
+          </div>
+        </div>
+        <h2>Current Team:&nbsp;
           {playerData.current_club_name}
         </h2>
+
+        <DataGrid
+        rows={playerStats}
+        columns={columns}
+        pageSize={pageSize}
+        rowsPerPageOptions={[5, 10, 25]}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        autoHeight
+      />
         
         <Button onClick={handleClose} style={{ left: '50%', transform: 'translateX(-50%)' }} >
           Close
