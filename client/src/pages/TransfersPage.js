@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField } from '@mui/material';
+import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, TextField, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import PlayerCard from '../components/PlayerCard';
@@ -74,8 +74,8 @@ export default function TransfersPage() {
       <Link onClick={() => setSelectedTransferName(params.row.player_name)}>{params.value}</Link>
   )},
     { field: 'year', headerName: 'Year' },
-    { field: 'name', width: 200, headerName: 'Out' },
-    { field: 'name2', width: 200, headerName: 'In' },
+    { field: 'name', width: 200, headerName: 'Club 1' },
+    { field: 'name2', width: 200, headerName: 'Club 2' },
     { field: 'transfer_period', width: 300, headerName: 'Transfer Period' },
     { field: 'fee_cleaned', width: 300, headerName: 'Fee (Million Euros)' },
   ]
@@ -93,18 +93,15 @@ export default function TransfersPage() {
   // two grid items of the same size on the same row, define two grid items with xs={6}. The Grid container
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
-    <Container>
+    <Container maxWidth="xl">
       {selectedTransferName && <PlayerCard playerId={transferId} handleClose={() => handleCloseModal()} />}
-      <h2>Search Transfers</h2>
-      <Grid container spacing={6}>
-        <Grid item xs={6}>
-          <TextField label='Name' value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%" }}/>
-        </Grid>
-        <Grid item xs={6}>
-          <TextField label='Club' value={clubName} onChange={(e) => setClubName(e.target.value)} style={{ width: "100%" }}/>
-        </Grid>
-        <Grid item xs={4}>
-          <p>Year</p>
+
+      <Grid container spacing={12}  style={{ marginTop: '1px' }}>
+        <Grid item xs={12} md={2.5}>
+        <Typography variant="h5" style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}>Search Transfers</Typography>
+          <TextField label='Name' value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%", marginTop: '40px' }}/>
+          <TextField label='Club' value={clubName} onChange={(e) => setClubName(e.target.value)} style={{ width: "100%", marginTop: '40px' }}/>
+          <Typography style={{ marginTop: '30px' }}>Year</Typography>
           <Slider
             value={year}
             min={1990}
@@ -113,9 +110,7 @@ export default function TransfersPage() {
             onChange={(e, newValue) => setYear(newValue)}
             valueLabelDisplay='auto'
           />
-        </Grid>
-        <Grid item xs={4}>
-          <p>Age</p>
+          <Typography style={{ marginTop: '20px' }}>Age</Typography>
           <Slider
             value={age}
             min={0}
@@ -124,9 +119,7 @@ export default function TransfersPage() {
             onChange={(e, newValue) => setAge(newValue)}
             valueLabelDisplay='auto'
           />
-        </Grid>
-        <Grid item xs={4}>
-          <p>Fee</p>
+          <Typography style={{ marginTop: '20px' }}>Fee</Typography>
           <Slider
             value={fee}
             min={0}
@@ -135,22 +128,28 @@ export default function TransfersPage() {
             onChange={(e, newValue) => setFee(newValue)}
             valueLabelDisplay='auto'
           />
+          <Button onClick={() => search() } style={{ left: '50%', transform: 'translateX(-50%)', marginTop: '20px', 
+          borderRadius: '20px', // Set border-radius for rounded corners
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)', // Slight shading on hover
+          } }}>
+          Search
+        </Button>
       </Grid>
-      </Grid>
-      <Button onClick={() => search() } style={{ left: '50%', transform: 'translateX(-50%)' }}>
-        Search
-      </Button>
 
-      <h2>Transfers</h2>
-      {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
-      <DataGrid
-        rows={transferData}
-        columns={columns}
-        pageSize={pageSize}
-        rowsPerPageOptions={[5, 10, 25]}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        autoHeight
-      />
+      <Grid item xs={12} md={9.5}>
+        <Typography variant="h5" style={{ fontFamily: 'Verdana, Geneva, sans-serif', marginBottom: '20px' }}>Transfers</Typography>
+        <DataGrid
+          rows={transferData}
+          columns={columns}
+          pageSize={pageSize}
+          rowsPerPageOptions={[5, 10, 25]}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          autoHeight
+          style={{ backgroundColor: '#E7FACD' }}
+        />
+      </Grid>
+      </Grid>
     </Container>
   );
 }
