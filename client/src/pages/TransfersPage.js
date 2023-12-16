@@ -8,7 +8,7 @@ const config = require('../config.json');
 
 export default function TransfersPage() {
   const [pageSize, setPageSize] = useState(10);
-  const [data, setData] = useState([]);
+  const [transferData, setTransferData] = useState([]);
   const [selectedTransferId, setSelectedTransferId] = useState(null);
 
   const [name, setName] = useState('');
@@ -21,11 +21,16 @@ export default function TransfersPage() {
     fetch(`http://${config.server_host}:${config.server_port}/getTransfers`)
       .then(res => res.json())
       .then(resJson => {
-        const transfersWithId = resJson.map((transfer) => ({ id: transfer.transfer_id, ...transfer }));
-        setData(transfersWithId);
+        const transfersWithId = resJson.map((transfer) => ({ id: ""+transfer.transfer_id + "" +transfer.club_id + "", ...transfer }));
+        setTransferData(transfersWithId);
         console.log(transfersWithId);
       });
   }, []);
+
+  useEffect(() => {
+    console.log(transferData)
+  }, [transferData]);
+
 
 
   const search = () => {
@@ -39,8 +44,8 @@ export default function TransfersPage() {
       .then(resJson => {
         // DataGrid expects an array of objects with a unique id.
         // To accomplish this, we use a map with spread syntax (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-        const transfersWithId = resJson.map((transfer) => ({ id: transfer.transfer_id, ...transfer }));
-        setData(transfersWithId);
+        const transfersWithId = resJson.map((transfer) => ({ id: ""+transfer.transfer_id + "" +transfer.club_id + "", ...transfer }));
+        setTransferData(transfersWithId);
       });
   }
 
@@ -112,7 +117,7 @@ export default function TransfersPage() {
       <h2>Transfers</h2>
       {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
       <DataGrid
-        rows={data}
+        rows={transferData}
         columns={columns}
         pageSize={pageSize}
         rowsPerPageOptions={[5, 10, 25]}

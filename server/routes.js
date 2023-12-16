@@ -295,10 +295,11 @@ const getTransfers = async function(req, res) {
   const maxFeeCleaned = req.query.maxFeeCleaned ?? 999999;
 
   connection.query(`
-    SELECT t.transfer_id, c.name, t.player_name, t.year, t.fee_cleaned
+    SELECT t.transfer_id, c.name, c2.name, t.player_name, t.year, t.fee_cleaned, t.transfer_period
     FROM Transfers t
     JOIN Players p ON t.player_name = p.name
-    JOIN Clubs c ON t.club_id = c.club_id OR t.club_involved_id = c.club_id
+    JOIN Clubs c ON t.club_id = c.club_id
+    JOIN Clubs c2 ON t.club_involved_id = c2.club_id
     WHERE t.player_name LIKE '%${playerNameLike}%'
     AND c.name LIKE '%${clubNameLike}%'
     AND t.year BETWEEN ${minYear} AND ${maxYear}
