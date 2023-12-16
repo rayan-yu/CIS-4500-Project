@@ -52,8 +52,6 @@ export default function PlayerCard({ playerId, handleClose }) {
     { field: 'career_yellow_cards', headerName: 'Yellow Cards' },
     { field: 'career_red_cards', headerName: 'Red Cards' },
     { field: 'market_value_in_eur', headerName: 'Market Value (Euro)' },
-    
-
   ]
   
   

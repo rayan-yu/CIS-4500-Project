@@ -30,7 +30,7 @@ const players = async function(req, res) {
   connection.query(`
   SELECT *
   FROM Players
-  Order By last_name, first_name, player_id DESC
+  Order By name, player_id DESC
   `, (err, data) => {
     if (err || data.length === 0) {
       console.log(err);
@@ -110,18 +110,18 @@ const getPlayers = async function(req, res) {
     AND p.market_value_in_eur BETWEEN ${minMarketValue} AND ${maxMarketValue}
   */
 
-    // if (clubNameLike !== '%%') {
+  // if (clubNameLike !== '%%') {
   //   params.push(clubNameLike);
   // }
   connection.query(`
       SELECT *
       FROM Players
-      WHERE first_name LIKE '%${playerNameLike}%'
+      WHERE name LIKE '%${playerNameLike}%'
         AND current_club_name LIKE '%${clubNameLike}%'
         AND current_club_id LIKE '${clubId}'
         AND height_in_cm BETWEEN ${minHeight} AND ${maxHeight}
         AND last_season BETWEEN ${minSeason} AND ${maxSeason}
-        Order By last_name, first_name, player_id DESC
+        Order By name, player_id DESC
         `,
         (err, data) => {
           if (err) {
@@ -164,11 +164,11 @@ const getPlayerStats = async function(req, res) {
     SELECT 
       p.image_url,
       COUNT(a.player_id) AS career_appearances,
-      COALESCE(SUM(a.minutes_played), 0) AS career_minutes,
-      COALESCE(SUM(a.goals), 0) AS career_goals,
-      COALESCE(SUM(a.assists), 0) AS career_assists,
-      COALESCE(SUM(a.yellow_cards), 0) AS career_yellow_cards,
-      COALESCE(SUM(a.red_cards), 0) AS career_red_cards,
+      SUM(a.minutes_played) AS career_minutes,
+      SUM(a.goals) AS career_goals,
+      SUM(a.assists) AS career_assists,
+      SUM(a.yellow_cards) AS career_yellow_cards,
+      SUM(a.red_cards) AS career_red_cards,
       p.market_value_in_eur
     FROM Players p
     LEFT JOIN Appearances a ON p.player_id = a.player_id
@@ -283,6 +283,38 @@ const getClubs = async function(req, res) {
   });
 }; 
 
+// Route 13: GET getTransfers
+const getTransfers = async function(req, res) {
+  const playerNameLike = req.query.name ?? '';
+  const clubNameLike = req.query.clubName ?? '';
+  const minYear = req.query.minYear ?? 1993;
+  const maxYear = req.query.maxYear ?? 2022;
+  const minAge = req.query.minAge ?? 0;
+  const maxAge = req.query.maxAge ?? 100;
+  const minFeeCleaned = req.query.minFeeCleaned ?? -1;
+  const maxFeeCleaned = req.query.maxFeeCleaned ?? 999999;
+
+  connection.query(`
+    SELECT t.transfer_id, c.name, t.player_name, t.year, t.fee_cleaned
+    FROM Transfers t
+    JOIN Players p ON t.player_name = p.name
+    JOIN Clubs c ON t.club_id = c.club_id OR t.club_involved_id = c.club_id
+    WHERE t.player_name LIKE '%${playerNameLike}%'
+    AND c.name LIKE '%${clubNameLike}%'
+    AND t.year BETWEEN ${minYear} AND ${maxYear}
+    AND t.age BETWEEN ${minAge} AND ${maxAge}
+    AND t.fee_cleaned BETWEEN ${minFeeCleaned} AND ${maxFeeCleaned}
+    `, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.json([]);
+    } else {
+      res.send(data);
+    }
+  });
+}; 
+
+
 module.exports = {
   player,
   players,
@@ -293,12 +325,12 @@ module.exports = {
   getPlayerStats,
   getClubs,
   getGames,
+  getTransfers
   // getPlayerBestGame,
   // getPlayerFavoriteScoringClub,
   // getClubStats,
   // getClubCompetitions,
   // getTopTransfersForClub,
-  // getFilteredTransfers,
   // getTransferStats,
   // getMatchupStats,
   // getTransferHistoryBetweenClubs,

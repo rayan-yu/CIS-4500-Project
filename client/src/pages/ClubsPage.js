@@ -13,6 +13,12 @@ export default function ClubsPage() {
   const [selectedClubId, setSelectedClubId] = useState(null);
   const [selectedClubCode, setSelectedClubCode] = useState(null);
 
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
+  const [stadiumSize, setStadiumSize] = useState([0, 999999]);
+  const [totalGames, setTotalGames] = useState([0, 999999]);
+  const [totalWins, setTotalWins] = useState([0, 999999]);
+  
   /**
   const clubNameLike = req.query.clubName ?? '';
   const location = req.query.location ?? '';
@@ -23,12 +29,6 @@ export default function ClubsPage() {
   const minTotalWins = req.query.minTotalWins ?? 0;
   const maxTotalWins = req.query.maxTotalWins ?? 999999;
    */
-
-  const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
-  const [stadiumSize, setStadiumSize] = useState([0, 999999]);
-  const [totalGames, setTotalGames] = useState([0, 999999]);
-  const [totalWins, setTotalWins] = useState([0, 999999]);
 
   useEffect(() => {
     fetch(`http://${config.server_host}:${config.server_port}/getClubs`)
@@ -65,8 +65,8 @@ export default function ClubsPage() {
   // LazyTable component. The big difference is we provide all data to the DataGrid component
   // instead of loading only the data we need (which is necessary in order to be able to sort by column)
   const columns = [
-    { field: 'club_code', headerName: 'club_code', renderCell: (params) => (
-        <Link onClick={() => setClubInfo(params)}>{params.value}</Link>
+    { field: 'club_code', width: 200, headerName: 'club_code', renderCell: (params) => (
+        <Link onClick={() => setSelectedClubId(params.row.club_code)}>{params.value}</Link>
     ) },
     { field: 'domestic_competition_id', width: 200, headerName: 'Location' },
     { field: 'stadium_name', width: 200, headerName: 'Stadium' },
