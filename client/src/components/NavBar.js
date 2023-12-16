@@ -40,7 +40,6 @@ export default function NavBar() {
           <NavText href='/players' text='Players' />
           <NavText href='/clubs' text='Clubs' />
           <NavText href='/transfers' text='Transfers' />
-          <NavText href='/map' text='Map' />
           <NavText href='/comparison' text='Compare' />
         </Toolbar>
       </Container>
