@@ -16,10 +16,11 @@ app.get('/players', routes.players);
 app.get('/players/:player_id', routes.player);
 app.get('/clubs', routes.clubs);
 app.get('/clubs/:club_id', routes.club);
-app.get('/competitions', routes.competitions);
-app.get('/competitions/:competition_id', routes.competition);
-app.get('/games', routes.games);
-app.get('/games/:game_id', routes.game);
+app.get('/getPlayers', routes.getPlayers);
+// app.get('/competitions', routes.competitions);
+// app.get('/competitions/:competition_id', routes.competition);
+// app.get('/games', routes.games);
+// app.get('/games/:game_id', routes.game);
 
 
 app.listen(config.server_port, () => {

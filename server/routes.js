@@ -12,30 +12,6 @@ const connection = mysql.createConnection({
 });
 connection.connect((err) => err && console.log(err));
 
-/******************
- * WARM UP ROUTES *
- ******************/
-
-// Route 1: GET /author/:type
-const author = async function(req, res) {
-  // TODO (TASK 1): replace the values of name and pennKey with your own
-  const name = 'admin';
-  const pennKey = 'adminkey';
-
-  // checks the value of type the request parameters
-  // note that parameters are required and are specified in server.js in the endpoint by a colon (e.g. /author/:type)
-  if (req.params.type === 'name') {
-    // res.send returns data back to the requester via an HTTP response
-    res.send(`Created by ${name}`);
-  } else if (req.params.type === 'pennkey') {
-    // TODO (TASK 2): edit the else if condition to check if the request parameter is 'pennkey' and if so, send back response 'Created by [pennkey]'
-    res.send(`Created by ${pennKey}`)
-  } else {
-    // we can also send back an HTTP status code to indicate an improper request
-    res.status(400).send(`'${req.params.type}' is not a valid author type. Valid types are 'name' and 'pennkey'.`);
-  }
-}
-
 const player = async function(req, res) {
   connection.query(`
   SELECT *
@@ -55,33 +31,6 @@ const players = async function(req, res) {
   SELECT *
   FROM Players
   Order By last_name, first_name, player_id DESC
-  `, (err, data) => {
-    if (err || data.length === 0) {
-      console.log(err);
-      res.json({});
-    } else {
-      res.send(data);
-    }
-  });
-}
-const game = async function(req, res) {
-  connection.query(`
-  SELECT *
-  FROM Games
-  WHERE game_id = '${req.params.game_id}'  `, (err, data) => {
-    if (err || data.length === 0) {
-      console.log(err);
-      res.json({});
-    } else {
-      res.json(data[0]);
-    }
-  });
-}
-const games = async function(req, res) {
-  connection.query(`
-  SELECT *
-  FROM Games
-  Order By home_club_id, competition_id, away_club_id DESC
   `, (err, data) => {
     if (err || data.length === 0) {
       console.log(err);
@@ -119,77 +68,67 @@ const clubs = async function(req, res) {
     }
   });
 }
-const competition = async function(req, res) {
-  connection.query(`
-  SELECT *
-  FROM Competitions
-  WHERE competition_id = '${req.params.competition_id}'  `, (err, data) => {
-    if (err || data.length === 0) {
-      console.log(err);
-      res.json({});
-    } else {
-      res.json(data[0]);
-    }
-  });
-}
-const competitions = async function(req, res) {
-  connection.query(`
-  SELECT *
-  FROM Competitions
-  Order By name, competition_id DESC
-  `, (err, data) => {
-    if (err || data.length === 0) {
-      console.log(err);
-      res.json({});
-    } else {
-      res.send(data);
-    }
-  });
-}
 
 // Route 9: Get /getPlayers
 const getPlayers = async function(req, res) {
   // Use placeholders for variables to prevent SQL injection
-  const playerNameLike = `%${req.query.name || ''}%`;
-  const minSeason = req.query.minSeason || '%%';
-  const maxSeason = req.query.maxSeason || '%%';
-  const country = `%${req.query.country || ''}%`;
-  const position = `%${req.query.position || ''}%`;
-  const minHeight = parseInt(req.query.minHeight, 10) || 0;
-  const maxHeight = parseInt(req.query.maxHeight, 10) || 999;
-  const foot = `%${req.query.foot || ''}%`;
-  const clubNameLike = `%${req.query.clubName || ''}%`;
-  const minMarketValue = parseInt(req.query.minMarketValue, 10) || 0;
-  const maxMarketValue = parseInt(req.query.maxMarketValue, 10) || 999999999;
+/*
+  const title = req.query.title ?? '';
+  const durationLow = req.query.duration_low ?? 60;
+  const durationHigh = req.query.duration_high ?? 660;
 
-  const query = `
-    SELECT p.id, p.name
-    FROM Players p
-    WHERE p.name LIKE '%${name}%'
-    AND p.last_season BETWEEN ${minSeason} AND ${maxSeason}
-    AND p.country_of_citizenship = '%${country}%'
-    AND p.position = '%${position}%'
-    AND p.height_in_cm BETWEEN ${minHeight} AND ${maxHeight}
-    AND p.foot = '%${foot}%'
-    AND p.market_value_in_eur BETWEEN ${minMarketValue} AND ${maxMarketValue}
-  `;
-
+  const playsLow = req.query.plays_low ?? 0;
+  const playsHigh = req.query.plays_high ?? 1100000000;
+  const danceabilityLow = req.query.danceability_low ?? 0;
+  const danceabilityHigh = req.query.danceability_high ?? 1;
+  const energyLow = req.query.energy_low ?? 0;
+  const energyHigh = req.query.energy_high ?? 1;
+  const valenceLow = req.query.valence_low ?? 0;
+  const valenceHigh = req.query.valence_high ?? 1;
+  const explicit = req.query.explicit === 'true' ? 1 : 0;
+*/
+  const playerNameLike = req.query.name ?? '';
+  const clubNameLike = req.query.clubName ?? '';
+  const minSeason = req.query.minSeason ?? 1990;
+  const maxSeason = req.query.maxSeason ?? 2023;
+  const minHeight = req.query.minHeight ?? 0;
+  const maxHeight = req.query.maxHeight ?? 300;
+  // const country = req.query.country ?? '';
+  // const position = req.query.position ?? '';
+  // const foot = req.query.foot ?? '';
+  // const clubNameLike = `%${req.query.clubName || ''}%`;
+  // const minMarketValue = parseInt(req.query.minMarketValue, 10) || 0;
+  // const maxMarketValue = parseInt(req.query.maxMarketValue, 10) || 999999999;
   //    what is this supposed to mean @cspeaker
   //     ${clubNameLike !== '%%' ? 'AND p.player_id IN (SELECT a.player_id FROM Appearances a JOIN Clubs c ON a.club_id = c.club_id WHERE c.name LIKE ‘%?%’)' : ''}
+  /*
+    AND p.country_of_citizenship = '%${country}%'
+    AND p.position = '%${position}%'
+    AND p.foot = '%${foot}%'
+      AND p.height_in_cm BETWEEN ${minHeight} AND ${maxHeight}
+    AND p.market_value_in_eur BETWEEN ${minMarketValue} AND ${maxMarketValue}
+  */
 
-  const params = [playerNameLike, minSeason, maxSeason, country, position, minHeight, maxHeight, foot, minMarketValue, maxMarketValue];
-  // if (clubNameLike !== '%%') {
+    // if (clubNameLike !== '%%') {
   //   params.push(clubNameLike);
   // }
-
-  connection.query(query, params, (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal server error' });
-    } else {
-      res.json(data); // Send the result array to client
-    }
-  });
+  connection.query(`
+      SELECT *
+      FROM Players
+      WHERE first_name LIKE '%${playerNameLike}%'
+        AND current_club_name LIKE '%${clubNameLike}%'
+        AND height_in_cm BETWEEN ${minHeight} AND ${maxHeight}
+        AND last_season BETWEEN ${minSeason} AND ${maxSeason}
+        Order By last_name, first_name, player_id DESC
+        `,
+        (err, data) => {
+          if (err) {
+            console.log(err);
+            res.json([]);
+          } else {
+            res.send(data);
+          }
+        });
 }; 
 
 // Route 10: GET getPlayerStats
@@ -208,7 +147,7 @@ const getPlayerStats = async function(req, res) {
       p.market_value_in_eur
     FROM Players p
     LEFT JOIN Appearances a ON p.player_id = a.player_id
-    WHERE p.player_id = ${mysql.escape(playerId)}
+    WHERE p.player_id = ${req.params.competition_id}
     GROUP BY p.player_id
   `;
 
@@ -240,7 +179,7 @@ const getPlayerBestGame = async function(req, res) {
     JOIN Games g ON a.game_id = g.game_id
     JOIN Clubs c_home ON g.home_club_id = c_home.club_id
     JOIN Clubs c_away ON g.away_club_id = c_away.club_id
-    WHERE a.player_id = ${mysql.escape(playerId)}
+    WHERE a.player_id = ${playerId}
     ORDER BY total_contribution DESC, a.goals DESC, a.assists DESC
     LIMIT 1
   `;
@@ -270,7 +209,7 @@ const getPlayerFavoriteScoringClub = async function(req, res) {
     JOIN Games g ON a.game_id = g.game_id
     JOIN Clubs c_home ON g.home_club_id = c_home.club_id
     JOIN Clubs c_away ON g.away_club_id = c_away.club_id
-    WHERE a.player_id = ${mysql.escape(playerId)}
+    WHERE a.player_id = ${playerId}
     GROUP BY opposing_team_name
     ORDER BY total_goals DESC
     LIMIT 1
@@ -661,7 +600,6 @@ const getMostPlayedMatchup = async function(req, res) {
 
 
 module.exports = {
-  author,
   player,
   players,
   club,

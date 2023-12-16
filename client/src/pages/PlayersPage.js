@@ -3,6 +3,7 @@ import { Button, Checkbox, Container, FormControlLabel, Grid, Link, Slider, Text
 import { DataGrid } from '@mui/x-data-grid';
 
 import PlayerCard from '../components/PlayerCard';
+
 const config = require('../config.json');
 
 export default function PlayersPage() {
@@ -11,9 +12,24 @@ export default function PlayersPage() {
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
 
   const [name, setName] = useState('');
+  const [clubName, setClubName] = useState('');
+  const [season, setSeason] = useState([0, 2023]);
+  const [height, setHeight] = useState([0, 300]);
+
+/* 
+  const playerNameLike = req.query.name ?? '';
+  const clubNameLike = req.query.clubName ?? '';
+  const minSeason = req.query.minSeason ?? 1990;
+  const maxSeason = req.query.maxSeason ?? 2023;
+  const minHeight = req.query.minSeason ?? 0;
+  const maxHeight = req.query.minSeason ?? 300;
+  const [country, setCountry] = useState('');
+  const [position, setPosition] = useState('');
+  const [marketValue, setMarketValue] = useState([0, 1]);
+*/
 
   useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/players`)
+    fetch(`http://${config.server_host}:${config.server_port}/getPlayers`)
       .then(res => res.json())
       .then(resJson => {
         const playersWithId = resJson.map((player) => ({ id: player.player_id, ...player }));
@@ -22,6 +38,20 @@ export default function PlayersPage() {
       });
   }, []);
 
+  const search = () => {
+    fetch(`http://${config.server_host}:${config.server_port}/getPlayers?name=${name}` +
+      `&clubName=${clubName}` +
+      `&minSeason=${season[0]}&maxSeason=${season[1]}` +
+      `&minHeight=${height[0]}&maxHeight=${height[1]}`
+    )
+      .then(res => res.json())
+      .then(resJson => {
+        // DataGrid expects an array of objects with a unique id.
+        // To accomplish this, we use a map with spread syntax (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+        const playersWithId = resJson.map((player) => ({ id: player.player_id, ...player }));
+        setData(playersWithId);
+      });
+  }
 
   // This defines the columns of the table of songs used by the DataGrid component.
   // The format of the columns array and the DataGrid component itself is very similar to our
@@ -31,9 +61,11 @@ export default function PlayersPage() {
     { field: 'name', headerName: 'Name', width: 300, renderCell: (params) => (
         <Link onClick={() => setSelectedPlayerId(params.row.player_id)}>{params.value}</Link>
     ) },
-    { field: 'country_of_birth', width: 300, headerName: 'Country' },
+    { field: 'country_of_birth', headerName: 'Country' },
     { field: 'current_club_name', width: 300, headerName: 'Club' },
-    { field: 'position', width: 300, headerName: 'Position' },
+    { field: 'last_season', headerName: 'Season' },
+    { field: 'height_in_cm', headerName: 'Height' },
+    { field: 'position', headerName: 'Position' },
   ]
 
   // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
@@ -47,7 +79,40 @@ export default function PlayersPage() {
     <Container>
       {selectedPlayerId && <PlayerCard playerId={selectedPlayerId} handleClose={() => setSelectedPlayerId(null)} />}
       <h2>Search Players</h2>
-      
+      <Grid container spacing={6}>
+        <Grid item xs={6}>
+          <TextField label='Name' value={name} onChange={(e) => setName(e.target.value)} style={{ width: "100%" }}/>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField label='Club' value={clubName} onChange={(e) => setClubName(e.target.value)} style={{ width: "100%" }}/>
+        </Grid>
+        <Grid item xs={6}>
+          <p>Season</p>
+          <Slider
+            value={season}
+            min={1990}
+            max={2023}
+            step={1}
+            onChange={(e, newValue) => setSeason(newValue)}
+            valueLabelDisplay='auto'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <p>Height</p>
+          <Slider
+            value={height}
+            min={100}
+            max={300}
+            step={1}
+            onChange={(e, newValue) => setHeight(newValue)}
+            valueLabelDisplay='auto'
+          />
+        </Grid>
+      </Grid>
+      <Button onClick={() => search() } style={{ left: '50%', transform: 'translateX(-50%)' }}>
+        Search
+      </Button>
+
       <h2>Players</h2>
       {/* Notice how similar the DataGrid component is to our LazyTable! What are the differences? */}
       <DataGrid
