@@ -122,6 +122,8 @@ export default function PlayersPage() {
         rowsPerPageOptions={[5, 10, 25]}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         autoHeight
+        style={{ backgroundColor: '#E7FACD' }}
+        
       />
     </Container>
   );

@@ -1,46 +1,48 @@
-import { AppBar, Container, Toolbar, Typography } from '@mui/material'
+import { AppBar, Button, Container, Toolbar } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import footylogo from '../footylogo.png';
 
-// The hyperlinks in the NavBar contain a lot of repeated formatting code so a
-// helper component NavText local to the file is defined to prevent repeated code.
-function NavText({ href, text, isMain }) {
+function NavButton({ href, text, isMain }) {
+  const commonStyles = {
+    fontFamily: 'Verdana, Geneva, sans-serif',
+    fontWeight: 700,
+    letterSpacing: '.2rem',
+    color: 'inherit',
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    transition: 'background-color 0.3s ease'
+  };
+
   return (
-    <Typography
-      variant={isMain ? 'h5' : 'h7'}
-      noWrap
+    <Button
+      component={NavLink}
+      to={href}
       style={{
-        marginRight: '30px',
-        fontFamily: 'monospace',
-        fontWeight: 700,
-        letterSpacing: '.3rem',
+        ...commonStyles,
+        marginRight: isMain ? 'auto' : '10px', // Adjust the spacing for non-main links
+        borderRadius: '20px', // Set border-radius for rounded corners
+        '&:hover': {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)', // Slight shading on hover
+        }
       }}
     >
-      <NavLink
-        to={href}
-        style={{
-          color: 'inherit',
-          textDecoration: 'none',
-        }}
-      >
-        {text}
-      </NavLink>
-    </Typography>
-  )
+      {isMain && <img src={footylogo} alt="FootyFacts Logo" style={{ marginRight: '10px', height: '30px' }} />}
+      {text}
+    </Button>
+  );
 }
 
-// Here, we define the NavBar. Note that we heavily leverage MUI components
-// to make the component look nice. Feel free to try changing the formatting
-// props to how it changes the look of the component.
 export default function NavBar() {
   return (
-    <AppBar position='static'>
+    <AppBar position='static' style={{ backgroundColor: '#D6F5AD' }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <NavText href='/' text='FootyFacts' isMain />
-          <NavText href='/players' text='Players' />
-          <NavText href='/clubs' text='Clubs' />
-          <NavText href='/transfers' text='Transfers' />
-          <NavText href='/comparison' text='Compare' />
+          <NavButton href='/' text='' isMain />
+          <NavButton href='/players' text='Players' />
+          <NavButton href='/clubs' text='Clubs' />
+          <NavButton href='/transfers' text='Transfers' />
+          <NavButton href='/comparison' text='Compare' />
         </Toolbar>
       </Container>
     </AppBar>

@@ -41,6 +41,15 @@ export default function App() {
           <Route path="/comparison" element={<Comparison/>}/>
         </Routes>
       </BrowserRouter>
+
+      <style>{`
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: #D6F5AD;
+        }
+      `}</style>
+
     </ThemeProvider>
   );
 }
