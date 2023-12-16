@@ -295,7 +295,7 @@ const getTransfers = async function(req, res) {
   const maxFeeCleaned = req.query.maxFeeCleaned ?? 999999;
 
   connection.query(`
-    SELECT t.transfer_id, c.name, c2.name, t.player_name, t.year, t.fee_cleaned, t.transfer_period
+    SELECT t.*, c.name, c2.name AS name2
     FROM Transfers t
     JOIN Players p ON t.player_name = p.name
     JOIN Clubs c ON t.club_id = c.club_id

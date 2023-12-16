@@ -9,13 +9,17 @@ const config = require('../config.json');
 export default function TransfersPage() {
   const [pageSize, setPageSize] = useState(10);
   const [transferData, setTransferData] = useState([]);
-  const [selectedTransferId, setSelectedTransferId] = useState(null);
+  const [transferId, setTransferId] = useState(null);
+  const [selectedTransferName, setSelectedTransferName] = useState(null);
+  const [data, setData] = useState([]);
 
   const [name, setName] = useState('');
   const [clubName, setClubName] = useState('');
   const [year, setYear] = useState([1993, 2023]);
   const [age, setAge] = useState([0, 100]);
   const [fee, setFee] = useState([0, 100]);
+
+  console.log(data)
 
   useEffect(() => {
     fetch(`http://${config.server_host}:${config.server_port}/getTransfers`)
@@ -27,9 +31,21 @@ export default function TransfersPage() {
       });
   }, []);
 
+  
+
   useEffect(() => {
-    console.log(transferData)
-  }, [transferData]);
+    console.log(selectedTransferName);
+    fetch(`http://${config.server_host}:${config.server_port}/getPlayers?name=${selectedTransferName}`
+    )
+      .then(res => res.json())
+      .then(resJson => {
+        // DataGrid expects an array of objects with a unique id.
+        // To accomplish this, we use a map with spread syntax (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+        const playersWithId = resJson.map((player) => ({ id: player.player_id, ...player }));
+        setData([playersWithId]);
+        setTransferId(playersWithId[0].player_id);
+      });
+  }, [selectedTransferName]);
 
 
 
@@ -53,11 +69,20 @@ export default function TransfersPage() {
 
   
   const columns = [
-    { field: 'player_name', headerName: 'Player Name', width: 300},
-    { field: 'year', width: 300, headerName: 'Year' },
+    { field: 'player_name', headerName: 'Player Name', width: 200, renderCell: (params) => (
+      <Link onClick={() => setSelectedTransferName(params.row.player_name)}>{params.value}</Link>
+  )},
+    { field: 'year', headerName: 'Year' },
+    { field: 'name', width: 200, headerName: 'Out' },
+    { field: 'name2', width: 200, headerName: 'In' },
     { field: 'transfer_period', width: 300, headerName: 'Transfer Period' },
     { field: 'fee_cleaned', width: 300, headerName: 'Fee (Million Euros)' },
   ]
+
+  const handleCloseModal = () => {
+    setSelectedTransferName(null);
+    setTransferId(null);
+  }
 
   // This component makes uses of the Grid component from MUI (https://mui.com/material-ui/react-grid/).
   // The Grid component is super simple way to create a page layout. Simply make a <Grid container> tag
@@ -68,6 +93,7 @@ export default function TransfersPage() {
   // will automatically lay out all the grid items into rows based on their xs values.
   return (
     <Container>
+      {selectedTransferName && <PlayerCard playerId={transferId} handleClose={() => handleCloseModal()} />}
       <h2>Search Transfers</h2>
       <Grid container spacing={6}>
         <Grid item xs={6}>
