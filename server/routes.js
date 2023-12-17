@@ -444,6 +444,40 @@ const getMatchupStats = async function(req, res) {
         }
       });
     }; 
+
+
+    const getFunFact = async function(req, res) {
+      connection.query(
+        `WITH CompetitionGoals AS (
+          SELECT g.competition_id,a.player_id, SUM(a.goals) AS total_goals
+          FROM Appearances a
+          JOIN Games g ON a.game_id = g.game_id
+          WHERE YEAR(a.date) >= 2018
+          GROUP BY g.competition_id, a.player_id
+       ),
+       MaxGoals AS (
+          SELECT competition_id, MAX(total_goals) AS max_goals
+          FROM CompetitionGoals
+          GROUP BY competition_id
+       )
+       SELECT comp.competition_id, comp.name AS cname, pl.name AS pname, ca.total_goals
+       FROM CompetitionGoals ca
+       JOIN MaxGoals ma ON ca.competition_id = ma.competition_id AND ca.total_goals = ma.max_goals
+       JOIN Competitions comp ON ca.competition_id = comp.competition_id
+       JOIN Players pl ON ca.player_id = pl.player_id
+       ORDER BY comp.name, pl.name;
+          `, (err, data) => {
+            if (err) {
+              console.log(err);
+              res.json([]);
+            } else {
+              res.send(data);
+            }
+          });
+        }; 
+
+    
+   
     
 module.exports = {
   player,
@@ -463,6 +497,7 @@ module.exports = {
   // getTopTransfersForClub,
   // getTransferStats,
   getMatchupStats,
+  getFunFact,
   // getTransferHistoryBetweenClubs,
   getMostPlayedMatchup
 }
