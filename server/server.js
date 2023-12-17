@@ -24,8 +24,10 @@ app.get('/getTransfers', routes.getTransfers);
 app.get('/getMostPlayedMatchup', routes.getMostPlayedMatchup);
 app.get('/getMatchupStats', routes.getMatchupStats);
 app.get('/getBestGame/:player_id', routes.getPlayerBestGame);
+app.get('/compare', routes.compare);
 
 app.get('/getFunFact', routes.getFunFact);
+app.get('/getClubId', routes.getClubId);
 
 app.get('/getTransferHistoryBetweenClubs', routes.getTransferHistoryBetweenClubs);
 // app.get('/competitions', routes.competitions);
