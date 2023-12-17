@@ -43,6 +43,7 @@ export default function NavBar() {
           <NavButton href='/clubs' text='Clubs' />
           <NavButton href='/transfers' text='Transfers' />
           <NavButton href='/matchup' text='Matchup' />
+          <NavButton href='/login' text='Login' />
         </Toolbar>
       </Container>
     </AppBar>

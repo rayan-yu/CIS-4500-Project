@@ -12,6 +12,7 @@ import TransfersPage from "./pages/TransfersPage";
 import PlayerCard from "./components/PlayerCard";
 import Map from "./pages/Map";
 import Matchup from "./pages/Matchup";
+import Login from "./pages/Login";
 
 // createTheme enables you to customize the look and feel of your app past the default
 // in this case, we only change the color scheme
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/clubs" element={<ClubsPage />} />
           <Route path="/transfers" element={<TransfersPage />} />
           <Route path="/matchup" element={<Matchup/>}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>
       </BrowserRouter>
 
