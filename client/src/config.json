@@ -1,4 +1,4 @@
 {
-  "server_host": "localhost",
+  "server_host": "https://cis-4500-project.onrender.com/",
   "server_port": "3000"
 }
