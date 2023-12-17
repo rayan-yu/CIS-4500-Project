@@ -1,10 +1,5 @@
 {
-  "homepage": "http://rayanyu.github.io/CIS-4500-Project",
   "devDependencies": {
     "gh-pages": "^6.1.0"
-  },
-  "scripts": {
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build"
   }
 }
