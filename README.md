@@ -9,7 +9,7 @@ We used HW2 client/server as our template to start building out our application.
 
 We currently have a client and server directory. 
 
-client/src houses our frontend code. We have our code broken down into Pages and reusable components. We have a page for looking at players, a page for looking at teams, a page for looking at competitions, and a homepage, In our components, we have a playerCard and we also have a navvar.
+client/src houses our frontend code. We have our code broken down into Pages and reusable components. We have a page for looking at players, a page for looking at teams, a page for looking at competitions, and a homepage, In our components, we have a playerCard and we also have a navbar.
 
 server contains our backend code. We have a routes.js that contains all of our api calls and database queries. We alsi have server.js which has the express handlers.
 
