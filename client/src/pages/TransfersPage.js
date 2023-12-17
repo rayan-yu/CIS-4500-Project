@@ -113,7 +113,7 @@ export default function TransfersPage() {
           <Typography style={{ marginTop: '20px' }}>Age</Typography>
           <Slider
             value={age}
-            min={0}
+            min={10}
             max={50}
             step={1}
             onChange={(e, newValue) => setAge(newValue)}
