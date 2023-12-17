@@ -64,6 +64,7 @@ useEffect(() => {
 
   const matchup = () => {
     // Hint: here is some pseudocode to guide you
+    setMatchupStats2([]);
     fetch(`http://${config.server_host}:${config.server_port}/getMatchupStats?home_club_name=${homeClub}` +
     `&away_club_name=${awayClub}`)
       .then(res => res.json())
