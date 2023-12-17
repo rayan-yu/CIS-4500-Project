@@ -15,9 +15,9 @@ export default function ClubsPage() {
 
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [stadiumSize, setStadiumSize] = useState([0, 999999]);
-  const [totalGames, setTotalGames] = useState([0, 999999]);
-  const [totalWins, setTotalWins] = useState([0, 999999]);
+  const [stadiumSize, setStadiumSize] = useState([0, 100000]);
+  const [totalGames, setTotalGames] = useState([0, 700]);
+  const [totalWins, setTotalWins] = useState([0, 500]);
   
   /**
   const clubNameLike = req.query.clubName ?? '';
@@ -97,7 +97,7 @@ export default function ClubsPage() {
               value={stadiumSize}
               min={1000}
               max={100000} 
-              step={1000}
+              step={500}
               onChange={(e, newValue) => setStadiumSize(newValue)}
               valueLabelDisplay='auto'
             />
@@ -105,7 +105,7 @@ export default function ClubsPage() {
             <Slider
               value={totalGames}
               min={0}
-              max={999} // someone who knows realistic game numbers needs to change these 
+              max={700} 
               step={10}
               onChange={(e, newValue) => setTotalGames(newValue)}
               valueLabelDisplay='auto'
@@ -114,7 +114,7 @@ export default function ClubsPage() {
             <Slider
               value={totalWins}
               min={0}
-              max={999}
+              max={500}
               step={10}
               onChange={(e, newValue) => setTotalWins(newValue)}
               valueLabelDisplay='auto'

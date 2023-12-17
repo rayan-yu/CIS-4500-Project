@@ -302,8 +302,7 @@ const getTransfers = async function(req, res) {
     JOIN Clubs c ON t.club_id = c.club_id
     JOIN Clubs c2 ON t.club_involved_id = c2.club_id
     WHERE t.player_name LIKE '%${playerNameLike}%'
-    AND c.name LIKE '%${clubNameLike}%'
-    OR c2.name LIKE '%${clubNameLike2}%'
+    AND (c.name LIKE '%${clubNameLike}%' OR c2.name LIKE '%${clubNameLike2}%')
     AND t.year BETWEEN ${minYear} AND ${maxYear}
     AND t.age BETWEEN ${minAge} AND ${maxAge}
     AND t.fee_cleaned BETWEEN ${minFeeCleaned} AND ${maxFeeCleaned}
