@@ -13,8 +13,8 @@ export default function PlayersPage() {
 
   const [name, setName] = useState('');
   const [clubName, setClubName] = useState('');
-  const [season, setSeason] = useState([0, 2023]);
-  const [height, setHeight] = useState([0, 300]);
+  const [season, setSeason] = useState([1990, 2023]);
+  const [height, setHeight] = useState([150, 225]);
 
 /* 
   const playerNameLike = req.query.name ?? '';
@@ -98,8 +98,8 @@ export default function PlayersPage() {
           <Typography style={{ marginTop: '20px' }}>Height</Typography>
           <Slider
             value={height}
-            min={100}
-            max={300}
+            min={150}
+            max={225}
             step={1}
             onChange={(e, newValue) => setHeight(newValue)}
             valueLabelDisplay='auto'

@@ -15,9 +15,9 @@ export default function TransfersPage() {
 
   const [name, setName] = useState('');
   const [clubName, setClubName] = useState('');
-  const [year, setYear] = useState([1993, 2023]);
-  const [age, setAge] = useState([0, 100]);
-  const [fee, setFee] = useState([0, 100]);
+  const [year, setYear] = useState([1990, 2023]);
+  const [age, setAge] = useState([10, 50]);
+  const [fee, setFee] = useState([0, 150]);
 
   console.log(data)
 
@@ -113,8 +113,8 @@ export default function TransfersPage() {
           <Typography style={{ marginTop: '20px' }}>Age</Typography>
           <Slider
             value={age}
-            min={0}
-            max={100}
+            min={10}
+            max={50}
             step={1}
             onChange={(e, newValue) => setAge(newValue)}
             valueLabelDisplay='auto'
@@ -123,8 +123,8 @@ export default function TransfersPage() {
           <Slider
             value={fee}
             min={0}
-            max={10}
-            step={.1}
+            max={150}
+            step={1}
             onChange={(e, newValue) => setFee(newValue)}
             valueLabelDisplay='auto'
           />

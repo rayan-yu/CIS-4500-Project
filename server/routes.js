@@ -302,8 +302,7 @@ const getTransfers = async function(req, res) {
     JOIN Clubs c ON t.club_id = c.club_id
     JOIN Clubs c2 ON t.club_involved_id = c2.club_id
     WHERE t.player_name LIKE '%${playerNameLike}%'
-    AND c.name LIKE '%${clubNameLike}%'
-    OR c2.name LIKE '%${clubNameLike2}%'
+    AND (c.name LIKE '%${clubNameLike}%' OR c2.name LIKE '%${clubNameLike2}%')
     AND t.year BETWEEN ${minYear} AND ${maxYear}
     AND t.age BETWEEN ${minAge} AND ${maxAge}
     AND t.fee_cleaned BETWEEN ${minFeeCleaned} AND ${maxFeeCleaned}
@@ -478,6 +477,36 @@ const getMatchupStats = async function(req, res) {
 
     
    
+// transfer record
+const getTransferHistoryBetweenClubs = async function(req, res) {
+  const club_id = req.query.club_id ?? 0;
+  const club_involved_id = req.query.club_involved_id ?? 0;
+
+  connection.query(
+    `SELECT c1.name, c2.name,
+    SUM(CASE WHEN t.club_id = ${club_id} AND t.club_involved_id = ${club_involved_id} THEN t.fee_cleaned
+             WHEN t.club_involved_id = ${club_id} AND t.club_id = ${club_involved_id} THEN -t.fee_cleaned
+        END) AS net_transfer_record,
+    (
+      SELECT CONCAT(t2.player_name, ' for ', t2.fee_cleaned, ' in ', t2.year)
+      FROM Transfers t2
+      WHERE (t2.club_id = ${club_id} AND t2.club_involved_id = ${club_involved_id}) OR (t2.club_involved_id = ${club_id} AND t2.club_id = ${club_involved_id})
+      ORDER BY t2.fee_cleaned DESC
+      LIMIT 1
+    ) AS top_transfer
+      FROM Transfers t
+      JOIN Clubs c1 ON t.club_id = c1.club_id
+      JOIN Clubs c2 ON t.club_involved_id = c2.club_id
+      WHERE (t.club_id = ${club_id} AND t.club_involved_id = ${club_involved_id}) OR (t.club_involved_id = ${club_id} AND t.club_id = ${club_involved_id})
+      `, (err, data) => {
+        if (err) {
+          console.log(err);
+          res.json([]);
+        } else {
+          res.send(data);
+        }
+      });
+    }; 
     
 module.exports = {
   player,
@@ -496,8 +525,9 @@ module.exports = {
   // getClubCompetitions,
   // getTopTransfersForClub,
   // getTransferStats,
-  getMatchupStats,
   getFunFact,
   // getTransferHistoryBetweenClubs,
+  getMatchupStats, 
+  getTransferHistoryBetweenClubs,
   getMostPlayedMatchup
 }
