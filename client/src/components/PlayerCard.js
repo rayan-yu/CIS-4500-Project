@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Button, ButtonGroup, Modal } from '@mui/material';
+import { Box, Button, ButtonGroup, Modal, Stack } from '@mui/material';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import { NavLink } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
@@ -15,6 +15,7 @@ export default function PlayerCard({ playerId, handleClose }) {
  
   const [playerData, setPlayerData] = useState({});
   const [playerStats, setPlayerStats] = useState([]);
+  const [playerGame, setPlayerGame] = useState([]);
   const [pageSize, setPageSize] = useState(10);
   const [data, setData] = useState([]);
   let temp = 0;
@@ -43,6 +44,15 @@ export default function PlayerCard({ playerId, handleClose }) {
       });
   }, [playerId]);
 
+  useEffect(() => {
+    // Hint: here is some pseudocode to guide you
+    fetch(`http://${config.server_host}:${config.server_port}/getBestGame/${playerId}`)
+      .then(res => res.json())
+      .then(resJson => {
+        setPlayerGame([{id: 0, ...resJson}]);
+      });
+  }, [playerId]);
+
   
 
   const columns = [
@@ -53,6 +63,13 @@ export default function PlayerCard({ playerId, handleClose }) {
     { field: 'career_yellow_cards', headerName: 'Yellow Cards' },
     { field: 'career_red_cards', headerName: 'Red Cards' },
     { field: 'market_value_in_eur', headerName: 'Market Value (Euro)' },
+  ]
+
+  const columns2 = [
+    { field: 'goals', width: 200, headerName: 'Goals' },
+    { field: 'assists', width: 200, headerName: 'Assists' },
+    { field: 'total_contribution', width: 200, headerName: 'Total' },
+    
   ]
   
   
@@ -98,6 +115,22 @@ export default function PlayerCard({ playerId, handleClose }) {
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         autoHeight
       />
+
+      <Stack>
+        <h3>Best Game</h3>
+      <DataGrid
+        rows={playerGame}
+        columns={columns2}
+        pageSize={pageSize}
+        rowsPerPageOptions={[5, 10, 25]}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        autoHeight
+      />
+
+      </Stack>
+
+
+
         
         <Button onClick={handleClose} style={{ left: '50%', transform: 'translateX(-50%)' }} >
           Close

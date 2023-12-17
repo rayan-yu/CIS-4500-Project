@@ -23,6 +23,7 @@ app.get('/getPlayerStats/:player_id', routes.getPlayerStats);
 app.get('/getTransfers', routes.getTransfers);
 app.get('/getMostPlayedMatchup', routes.getMostPlayedMatchup);
 app.get('/getMatchupStats', routes.getMatchupStats);
+app.get('/getBestGame/:player_id', routes.getPlayerBestGame);
 
 app.get('/getFunFact', routes.getFunFact);
 

@@ -191,22 +191,22 @@ const getPlayerBestGame = async function(req, res) {
   const playerId = req.params.player_id; // This should be a numeric ID
 
   const query = `
-    SELECT 
-      g.game_id,
-      CASE 
-        WHEN a.club_id = g.home_club_id THEN c_away.club_name 
-        ELSE c_home.club_name 
-      END AS opposing_team_name,
-      a.goals,
-      a.assists,
-      a.goals + a.assists AS total_contribution
-    FROM Appearances a
-    JOIN Games g ON a.game_id = g.game_id
-    JOIN Clubs c_home ON g.home_club_id = c_home.club_id
-    JOIN Clubs c_away ON g.away_club_id = c_away.club_id
-    WHERE a.player_id = ${playerId}
-    ORDER BY total_contribution DESC, a.goals DESC, a.assists DESC
-    LIMIT 1
+  SELECT 
+  g.game_id,
+  CASE 
+    WHEN a.player_current_club_id = g.home_club_id THEN c_away.name
+    ELSE c_home.name
+  END AS opposing_team_name,
+  a.goals,
+  a.assists,
+  a.goals + a.assists AS total_contribution
+  FROM Appearances a
+  JOIN Games g ON a.game_id = g.game_id
+  JOIN Clubs c_home ON g.home_club_id = c_home.club_id
+  JOIN Clubs c_away ON g.away_club_id = c_away.club_id
+  WHERE a.player_id = ${playerId}
+  ORDER BY total_contribution DESC, a.goals DESC, a.assists DESC
+  LIMIT 1
   `;
 
   connection.query(query, (err, data) => {
@@ -519,7 +519,7 @@ module.exports = {
   getClubs,
   getGames,
   getTransfers,
-  // getPlayerBestGame,
+  getPlayerBestGame,
   // getPlayerFavoriteScoringClub,
   // getClubStats,
   // getClubCompetitions,
