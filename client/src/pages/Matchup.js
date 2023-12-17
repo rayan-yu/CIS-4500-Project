@@ -88,6 +88,7 @@ useEffect(() => {
             p={3}
             style={{ borderRadius: '16px', border: '2px solid #000', width: 1200 }}
         >
+          <h3>Most Played Matchup: {mpmatchup.home_club_name ? mpmatchup.home_club_name: "____"} as the home team vs. {mpmatchup.away_club_name ? mpmatchup.away_club_name: "____"} as the away team. This fixture has been played {mpmatchup.match_count ? mpmatchup.match_count: "____"} times with {mpmatchup.total_goals ? mpmatchup.total_goals: "____"} goals being scored.</h3>
       <Grid container spacing={6}>
         <Grid item xs={6}>
           <TextField label='Club 1' value={homeClub} onChange={(e) => setHome(e.target.value)} style={{ width: "100%" }}/>
