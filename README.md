@@ -33,10 +33,6 @@ Terminal 2
 
 `npm install firebase`
 
-`npm install firebase/app`
-
-`npm install firebase/auth`
-
 `npm install firebase react-router-dom`
 
 `npm start`
