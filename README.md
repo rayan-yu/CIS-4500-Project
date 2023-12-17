@@ -15,5 +15,28 @@ server contains our backend code. We have a routes.js that contains all of our a
 
 We also have folders from our two different data sources as well as our google colab with our preprocessed data.
 
+How to run:
 
+Terminal 1
 
+`cd server`
+
+`npm install`
+
+`npm start`
+
+Terminal 2
+
+`cd client`
+
+`npm install`
+
+`npm install firebase`
+
+`npm install firebase/app`
+
+`npm install firebase/auth`
+
+`npm install firebase react-router-dom`
+
+`npm start`
