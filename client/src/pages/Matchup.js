@@ -8,9 +8,12 @@ export default function Matchup() {
   const [pageSize, setPageSize] = useState(10);
   const [mpmatchup, setMpMatchup] = useState({});
   const [matchupStats, setMatchupStats] = useState([]);
+  const [matchupStats2, setMatchupStats2] = useState([]);
 
   const [homeClub, setHome] = useState('');
   const [awayClub, setAway] = useState('');
+  const [homeId, setHomeId] = useState({});
+  const [awayId, setAwayId] = useState({});
 
 /* 
   const home_club_name = req.query.home_club_name ?? '';
@@ -31,16 +34,52 @@ useEffect(() => {
       });
   }, []);
 
+
+  useEffect(() => {
+    // Hint: here is some pseudocode to guide you
+    fetch(`http://${config.server_host}:${config.server_port}/getClubId?club_name=${homeClub}`)
+      .then(res => res.json())
+      .then(resJson => {
+        setHomeId(resJson[0]);
+        console.log()
+      });
+
+      
+  }, [homeClub]);
+
+  useEffect(() => {
+    // Hint: here is some pseudocode to guide you
+    fetch(`http://${config.server_host}:${config.server_port}/getClubId?club_name=${awayClub}`)
+    .then(res => res.json())
+    .then(resJson => {
+      setAwayId(resJson[0]);
+    });
+
+      
+  }, [awayClub]);
+
+  
+
   
 
   const matchup = () => {
     // Hint: here is some pseudocode to guide you
+    setMatchupStats2([]);
     fetch(`http://${config.server_host}:${config.server_port}/getMatchupStats?home_club_name=${homeClub}` +
     `&away_club_name=${awayClub}`)
       .then(res => res.json())
       .then(resJson => {
         const matchupWithId = resJson.map((m) => ({ id: 0, ...m }));
         setMatchupStats(matchupWithId);
+        console.log(resJson);
+      });
+
+      fetch(`http://${config.server_host}:${config.server_port}/compare?home_id=${homeId.club_id}` +
+    `&away_id=${awayId.club_id}`)
+      .then(res => res.json())
+      .then(resJson => {
+        const matchupWithId = resJson.map((m) => ({ id: 0, ...m }));
+        setMatchupStats2(matchupWithId);
         console.log(resJson);
       });
   }
@@ -68,6 +107,11 @@ useEffect(() => {
     { field: 'top_assister', width: 200, headerName: 'Top Assister' },
     { field: 'top_appearances', width: 200, headerName: 'Top Appearances' },
     { field: 'most_played_competition', width: 200, headerName: 'Most Played Competition' }
+  ];
+
+  const columns2 = [
+    { field: 'net_transfer_record', width: 200, headerName: 'Net Transfer Record' },
+    { field: 'top_transfer', width: 370, headerName: 'Top Transfer' },
   ];
   
 //   const matchup = () => {
@@ -106,6 +150,18 @@ useEffect(() => {
       <DataGrid
           rows={matchupStats}
           columns={columns1}
+          pageSize={pageSize}
+          rowsPerPageOptions={[5, 10, 25]}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          autoHeight
+          
+      />
+
+      <h3>Transfer Record</h3>
+
+<DataGrid
+          rows={matchupStats2}
+          columns={columns2}
           pageSize={pageSize}
           rowsPerPageOptions={[5, 10, 25]}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}

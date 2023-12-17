@@ -507,6 +507,52 @@ const getTransferHistoryBetweenClubs = async function(req, res) {
         }
       });
     }; 
+
+
+const getClubId = async function(req, res) {
+  const club_name = req.query.club_name ?? "";
+
+  connection.query(
+    `SELECT c.club_id
+    FROM Clubs c
+    WHERE c.name = '${club_name}'
+      `, (err, data) => {
+        if (err) {
+          console.log(err);
+          res.json([]);
+        } else {
+          res.send(data);
+        }
+      });
+    }; 
+
+    const compare = async function(req, res) {
+      const home_id = req.query.home_id ?? "";
+      const away_id = req.query.away_id ?? "";
+    
+      connection.query(
+        `SELECT
+        SUM(CASE WHEN t.club_id = ${home_id} AND t.club_involved_id = ${away_id} THEN t.fee_cleaned
+                 WHEN t.club_involved_id = ${home_id} AND t.club_id = ${away_id} THEN -t.fee_cleaned
+            END) AS net_transfer_record,
+        (
+            SELECT CONCAT(t2.player_name, ' for ', t2.fee_cleaned, ' in ', t2.year)
+            FROM Transfers t2
+            WHERE (t2.club_id = ${home_id} AND t2.club_involved_id = ${away_id}) OR (t2.club_involved_id = ${home_id} AND t2.club_id = ${away_id})
+            ORDER BY t2.fee_cleaned DESC
+            LIMIT 1
+        ) AS top_transfer
+     FROM Transfers t
+     WHERE (t.club_id = ${home_id} AND t.club_involved_id = ${away_id}) OR (t.club_involved_id = ${home_id} AND t.club_id = ${away_id});
+          `, (err, data) => {
+            if (err) {
+              console.log(err);
+              res.json([]);
+            } else {
+              res.send(data);
+            }
+          });
+        }; 
     
 module.exports = {
   player,
@@ -529,5 +575,7 @@ module.exports = {
   // getTransferHistoryBetweenClubs,
   getMatchupStats, 
   getTransferHistoryBetweenClubs,
-  getMostPlayedMatchup
+  getMostPlayedMatchup,
+  getClubId,
+  compare
 }
